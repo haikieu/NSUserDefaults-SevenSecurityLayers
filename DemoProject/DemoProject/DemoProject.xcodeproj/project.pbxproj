@@ -21,6 +21,7 @@
 		42A0981C197ECA5A00BF807A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A097FE197ECA5A00BF807A /* UIKit.framework */; };
 		42A09824197ECA5A00BF807A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 42A09822197ECA5A00BF807A /* InfoPlist.strings */; };
 		42A09826197ECA5A00BF807A /* DemoProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A09825197ECA5A00BF807A /* DemoProjectTests.m */; };
+		42A09832197ECAE600BF807A /* NSUserDefaults+SecuredUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A09831197ECAE600BF807A /* NSUserDefaults+SecuredUserDefaults.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		42A09821197ECA5A00BF807A /* DemoProjectTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DemoProjectTests-Info.plist"; sourceTree = "<group>"; };
 		42A09823197ECA5A00BF807A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		42A09825197ECA5A00BF807A /* DemoProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoProjectTests.m; sourceTree = "<group>"; };
+		42A09830197ECAE600BF807A /* NSUserDefaults+SecuredUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+SecuredUserDefaults.h"; sourceTree = "<group>"; };
+		42A09831197ECAE600BF807A /* NSUserDefaults+SecuredUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+SecuredUserDefaults.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +115,7 @@
 		42A09800197ECA5A00BF807A /* DemoProject */ = {
 			isa = PBXGroup;
 			children = (
+				42A0982F197ECAA700BF807A /* Classes */,
 				42A09809197ECA5A00BF807A /* AppDelegate.h */,
 				42A0980A197ECA5A00BF807A /* AppDelegate.m */,
 				42A0980C197ECA5A00BF807A /* Main.storyboard */,
@@ -150,6 +154,16 @@
 				42A09822197ECA5A00BF807A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		42A0982F197ECAA700BF807A /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				42A09830197ECAE600BF807A /* NSUserDefaults+SecuredUserDefaults.h */,
+				42A09831197ECAE600BF807A /* NSUserDefaults+SecuredUserDefaults.m */,
+			);
+			name = Classes;
+			path = ../../../Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42A09832197ECAE600BF807A /* NSUserDefaults+SecuredUserDefaults.m in Sources */,
 				42A09811197ECA5A00BF807A /* ViewController.m in Sources */,
 				42A0980B197ECA5A00BF807A /* AppDelegate.m in Sources */,
 				42A09807197ECA5A00BF807A /* main.m in Sources */,
