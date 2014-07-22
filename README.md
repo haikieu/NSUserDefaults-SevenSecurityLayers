@@ -8,8 +8,10 @@ NSUserDefaults+SecuredUserDefaults.h
 ####Benefit: Secure user data just by a little bit code change. 
 -------------------------------------
 
-
 ## How to use
+
+Note: Remember to install dependency first 
+* CocoaSecurity 1.2.4 (https://github.com/kelp404/CocoaSecurity)
 
 In the implementation file, import NSUserDefaults+SecuredUserDefaults.h
 
@@ -62,6 +64,7 @@ SecuredNSUserDefaults supports the following property types:
  * float
  * double
 
+
 ### Contact
 
 Email: haikieu2907@gmail.com
@@ -71,3 +74,25 @@ Email: haikieu2907@gmail.com
 https://github.com/nielsmouthaan/SecureNSUserDefaults
 
 ### MIT License
+
+###Dependencies
+
+ * CocoaSecurity 1.2.4 (https://github.com/kelp404/CocoaSecurity)
+
+###Dependencies Installation
+1. **git:**
+```
+$ git clone git://github.com/kelp404/CocoaSecurity.git
+$ cd CocoaSecurity
+$ git submodule update --init
+```
+
+2. **<a href="http://cocoapods.org/?q=CocoaSecurity" target="_blank">CocoadPods</a>:**  
+add `Podfile` in your project path
+```
+platform :ios
+pod 'CocoaSecurity'
+```
+```
+$ pod install
+```
