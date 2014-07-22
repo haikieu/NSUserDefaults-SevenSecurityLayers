@@ -1,7 +1,9 @@
 SecuredNSUserDefaults 
 =====================
 
-NSUserDefaults category for iOS and Mac OS X with additional methods to securely save data using strong AES 356-bit encryption. Especially, secure user data with just a little bit code change.
+* NSUserDefaults category for iOS and Mac OS X with additional methods to securely save data . 
+* Secure user data with just a little bit code change. 
+* Using strong AES 356-bit encryption
 
 ## How to use
 
@@ -20,7 +22,7 @@ Access a securedUserDefaults
 
 ```
 
-Store data
+Begin to save some data
 
 ```objective-c
 
@@ -43,11 +45,12 @@ NSString * yourString = [pref stringForKey:@"KindOfEncrytion"];
 
 ### Supported Property Types
 
-PAPreferences supports the following property types:
+SecuredNSUserDefaults supports the following property types:
 
  * NSInteger
  * NSString
  * NSArray
+ * string+array
  * NSDictionary
  * NSURL
  * NSData
@@ -57,9 +60,10 @@ PAPreferences supports the following property types:
 
 ### Contact
 
+Email: haikieu2907@gmail.com
+
 ###Reference solution
 
 https://github.com/nielsmouthaan/SecureNSUserDefaults
-
 
 ### MIT License
