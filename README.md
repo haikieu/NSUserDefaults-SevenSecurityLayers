@@ -12,6 +12,7 @@ NSUserDefaults+SecuredUserDefaults.h
 
 Note: Remember to install dependency first 
 * CocoaSecurity 1.2.4 (https://github.com/kelp404/CocoaSecurity)
+-----------------------------------
 
 In the implementation file, import NSUserDefaults+SecuredUserDefaults.h
 
