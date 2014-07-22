@@ -16,7 +16,7 @@ Access a securedUserDefaults
 
 ```objective-c
 
-//Recommend: Should put your secret key in any header file to secure your key.
+//Recommend: Should put the secret key in implementation files to secure your key.
 
 [[NSUserDefault securedUserDefaults] setSecretkey:@"Your secret key"];
 
