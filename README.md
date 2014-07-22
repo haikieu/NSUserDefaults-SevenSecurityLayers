@@ -1,4 +1,4 @@
-SecuredNSUserDefaults 
+NSUserDefaults+SecuredUserDefaults.h 
 =====================
 
 * NSUserDefaults category for iOS and Mac OS X with additional methods to securely save data . 
