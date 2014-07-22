@@ -10,4 +10,6 @@
 
 @interface NSUserDefaults (SecuredUserDefaults)
 
++(instancetype) securedUserDefaults;
+
 @end
