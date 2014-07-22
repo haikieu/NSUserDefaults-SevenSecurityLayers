@@ -2,8 +2,11 @@ NSUserDefaults+SecuredUserDefaults.h
 =====================
 
 * NSUserDefaults category for iOS and Mac OS X with additional methods to securely save data . 
-* Secure user data with just a little bit code change. 
 * Using strong AES 356-bit encryption
+
+#Benefit: Secure user data just by a little bit code change. 
+
+---------------------
 
 ## How to use
 
