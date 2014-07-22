@@ -7,4 +7,4 @@ NSUserDefaults category for iOS and Mac OS X with additional methods to securely
 
 
 
-Reference source: https://github.com/nielsmouthaan/SecureNSUserDefaults
+Original solution: https://github.com/nielsmouthaan/SecureNSUserDefaults
