@@ -20,7 +20,7 @@ In the implementation file, import NSUserDefaults+SecuredUserDefaults.h
 ```objective-c
 #import "NSUserDefaults+SecuredUserDefaults.h"
 ```
-Access a securedUserDefaults
+Init a secured UserDefaults with a secret key.
 
 ```objective-c
 
@@ -30,7 +30,7 @@ Access a securedUserDefaults
 
 ```
 
-Begin to save some data
+Save data
 
 ```objective-c
 
