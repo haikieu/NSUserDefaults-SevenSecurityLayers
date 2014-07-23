@@ -19,10 +19,12 @@
 
 +(void)initialize
 {
+#ifdef DEBUG
     NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentPath = [searchPaths objectAtIndex:0];
     
     NSLog(@"%@",documentPath);
+#endif
 }
 
 - (void)viewDidLoad
