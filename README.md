@@ -1,6 +1,6 @@
 NSUserDefaults+SecuredUserDefaults.h 
 =====================
-* An Utility category which provides an encrytion layer for NSUserDefaults to securely save data . 
+* A category which provides an encrytion layer for NSUserDefaults to securely save data . 
 * Using strong AES 356-bit encryption
 
 -------------------------------------
