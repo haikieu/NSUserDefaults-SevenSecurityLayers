@@ -1,12 +1,12 @@
 NSUserDefaults+SecuredUserDefaults.h 
 =====================
-
-* NSUserDefaults category for iOS and Mac OS X with additional methods to securely save data . 
+* A Utility category which provides an encrytion layer for NSUserDefaults to securely save data . 
 * Using strong AES 356-bit encryption
 
 -------------------------------------
 ####Benefit: 
 ###### * Secure user data just by one line of code.
+###### * Enable to handle exceptional case via built-in NOTIFICATION
 ###### * Enable using standardUserDefaults as well as securedUserDefaults parallelly 
 -------------------------------------
 
@@ -26,7 +26,7 @@ Init a secured UserDefaults with a secret key.
 
 ```objective-c
 
-//Recommend: Should put the secret key in implementation files to secure your key.
+//Recommend: Should put the secret key in implementation file to secure your key.
 
 [[NSUserDefault securedUserDefaults] setSecretkey:@"Your secret key"];
 
