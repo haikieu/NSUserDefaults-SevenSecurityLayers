@@ -75,7 +75,7 @@ static NSString *__secretKey = nil;
     }
     
     // Fetch data from user defaults
-    NSData *data = [self objectForKey:defaultName];
+    NSData *data = [super objectForKey:defaultName];
     
     // Check if we have some data to decrypt, return nil if no
     if(data == nil) {
