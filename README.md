@@ -5,7 +5,9 @@ NSUserDefaults+SecuredUserDefaults.h
 * Using strong AES 356-bit encryption
 
 -------------------------------------
-####Benefit: Secure user data just by a little bit code change. 
+####Benefit: 
+###### * Secure user data just by one line of code.
+###### * Enable using standardUserDefaults as well as securedUserDefaults parallelly 
 -------------------------------------
 
 ## How to use
