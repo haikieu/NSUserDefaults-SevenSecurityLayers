@@ -14,7 +14,6 @@
 
 #define NSSTRING const NSString
 
-NSSTRING * NOTIFICATION_SECRET_KEY_NOT_SET             = @"NOTIFICATION_SECRET_KEY_NOT_SET";
 NSSTRING * NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA = @"NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA";
 NSSTRING * NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA    = @"NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA";
 NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED  = @"NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED";
@@ -50,6 +49,13 @@ NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED  = @"NOTIFICATION_STORED_D
     enum EncryptionAlgorithm _encryption;
 }
 
+#pragma mark throw Exception
+
+-(void) raiseEncryptionKeyException
+{
+    [[NSException exceptionWithName:@"EncryptionKeyException" reason:@"Secret key should not be nil" userInfo:nil] raise];
+}
+
 #pragma mark Implemement category
 
 static id __securedObj = nil;
@@ -68,19 +74,25 @@ static id __securedObj = nil;
     if(!secretKey.length)
     {
 #ifdef DEBUG
-        NSLog(@"NSSecuredUserDefaults >>> %@",@"Secret may not be nil");
+        NSLog(@"NSSecuredUserDefaults >>> %@",@"Secret key may not be nil");
 #endif
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_SECRET_KEY_NOT_SET copy] object:self userInfo:@{@"message": @"Secret may not be nil"}];
+        [self raiseEncryptionKeyException];
     }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _secretKey = [secretKey copy];
+    });
     
-    _secretKey = [secretKey copy];
     return self;
 }
 
 -(instancetype)setEncryption:(enum EncryptionAlgorithm)encryptionAlgorithm
 {
-    _encryption = encryptionAlgorithm;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _encryption = encryptionAlgorithm;
+    });
+    
     return self;
 }
 
@@ -107,10 +119,10 @@ static id __securedObj = nil;
     if(!_secretKey.length)
     {
 #ifdef DEBUG
-        NSLog(@"NSSecuredUserDefaults >>> %@",@"Secret may not be nil when storing an object securely");
+        NSLog(@"NSSecuredUserDefaults >>> %@",@"Secret may not be nil or blank when storing an object securely");
 #endif
 
-        [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_SECRET_KEY_NOT_SET copy] object:self userInfo:@{@"message": @"Secret may not be nil when storing an object securely",@"key":defaultName}];
+        [self raiseEncryptionKeyException];
         
         return nil;
     }
@@ -272,7 +284,7 @@ static id __securedObj = nil;
 #ifdef DEBUG
         NSLog(@"NSSecuredUserDefaults >>> %@",@"Secret may not be nil when storing an object securely");
 #endif
-        [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_SECRET_KEY_NOT_SET copy] object:self userInfo:@{@"message": @"Secret may not be nil when storing an object securely",@"key":defaultName}];
+        [self raiseEncryptionKeyException];
         
         return;
     }
