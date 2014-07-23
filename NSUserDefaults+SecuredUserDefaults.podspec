@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
 
-  s.name         = "NSUserDefaults+SecuredUserDefaults"
+  s.name         = "NSUserDefaults+SevenSecurityLayers"
   s.version      = “1.0.0”
   s.summary      = "A category which provides an encryption layer for NSUserDefaults to securely save data, just by one line of code.”
-  s.homepage     = "https://github.com/haikieu/NSUserDefaults-SecuredUserDefaults"
+  s.homepage     = "https://github.com/haikieu/NSUserDefaults-SevenSecurityLayers"
   s.license      = { :type => ‘MIT’, :file => 'LICENSE' }
   s.author       = { "Hai Kieu" => "haikieu2907@gmail.com” }
   
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 
   s.source_files  = 'Classes/NSUserDefaults+*.{h,m}'
   s.source       = { 
-    :git => 'https://github.com/haikieu/NSUserDefaults-SecuredUserDefaults.git', 
+    :git => 'https://github.com/haikieu/NSUserDefaults-SevenSecurityLayers.git', 
     :tag => s.version.to_s
   }
   
