@@ -65,6 +65,7 @@
 }
 
 - (IBAction)onRetrieveData:(id)sender {
+    [self onTapSetKey:nil];
     _value1.text = [_pref stringForKey:_key1.text];
     _value2.text = [_pref stringForKey:_key2.text];
     _value3.text = [_pref stringForKey:_key3.text];
