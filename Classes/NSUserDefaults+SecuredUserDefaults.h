@@ -18,6 +18,6 @@ EX_NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED;
 @interface NSUserDefaults (SecuredUserDefaults)
 
 +(instancetype) securedUserDefaults;
--(void) setSecretKey:(NSString*) secretKey;
+-(instancetype) setSecretKey:(NSString*) secretKey;
 
 @end

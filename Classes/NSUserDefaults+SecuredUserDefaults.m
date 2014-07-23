@@ -38,7 +38,7 @@ static id __securedObj = nil;
 }
 
 static NSString *__secretKey = nil;
--(void)setSecretKey:(NSString *)secretKey
+-(instancetype)setSecretKey:(NSString *)secretKey
 {
     // Check if we have a (valid) key needed to decrypt
     if(!__secretKey)
@@ -48,11 +48,10 @@ static NSString *__secretKey = nil;
 #endif
         
         [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_SECRET_KEY_NOT_SET copy] object:self userInfo:@{@"message": @"Secret may not be nil"}];
-        
-        return;
     }
     
     __secretKey = [secretKey copy];
+    return [NSUserDefaults securedUserDefaults];
 }
 
 @end
