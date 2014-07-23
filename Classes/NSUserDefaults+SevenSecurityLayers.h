@@ -15,14 +15,14 @@ EX_NSSTRING * NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA;
 EX_NSSTRING * NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA;
 EX_NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED;
 
-@interface NSUserDefaults (SecuredUserDefaults)
+@interface NSUserDefaults (SevenSecurityLayers)
 
 +(instancetype) securedUserDefaults;
 -(instancetype) setSecretKey:(NSString*) secretKey;
 
 @end
 
-@interface NSDictionary (SecuredUserDefaults)
+@interface NSDictionary (SevenSecurityLayers)
 
 -(NSString*) messageFromUserInfo;
 -(NSString*) keyFromUserInfo;

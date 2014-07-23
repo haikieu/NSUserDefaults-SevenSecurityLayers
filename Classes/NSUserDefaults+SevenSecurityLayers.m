@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 haikieu2907@gmail.com. All rights reserved.
 //
 
-#import "NSUserDefaults+SecuredUserDefaults.h"
+#import "NSUserDefaults+SevenSecurityLayers.h"
 #import "CocoaSecurity.h"
 
 
 
 #define kStoredObjectKey @"storedObject"
-#define SUITE_NAME       @"com.hk.secured.userdefaults"
+#define SUITE_NAME       @"com.hk.SevenSecurityLayers.userdefaults"
 
 #define NSSTRING const NSString
 
@@ -27,7 +27,7 @@ NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED  = @"NOTIFICATION_STORED_D
 
 @end
 
-@implementation NSDictionary (SecuredUserDefaults)
+@implementation NSDictionary (SevenSecurityLayers)
 
 -(NSSecuredDictionary*) securedCopy
 {
@@ -78,9 +78,9 @@ NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED  = @"NOTIFICATION_STORED_D
 
 @end
 
-#pragma mark Implemement NSUserDefaults+SecuredUserDefaults.h
+#pragma mark Implemement NSUserDefaults+SevenSecurityLayers.h
 
-@implementation NSUserDefaults (SecuredUserDefaults)
+@implementation NSUserDefaults (SevenSecurityLayers)
 
 +(instancetype)securedUserDefaults
 {

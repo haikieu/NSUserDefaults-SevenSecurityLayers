@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "NSUserDefaults+SecuredUserDefaults.h"
+#import "NSUserDefaults+SevenSecurityLayers.h"
 
 @interface ViewController ()
 
@@ -110,7 +110,7 @@
 }
 
 - (IBAction)onTapAboutBtn:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"About" message:@"https://github.com/haikieu/NSUserDefaults-SecuredUserDefaults" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"About" message:@"https://github.com/haikieu/NSUserDefaults-SevenSecurityLayers" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
     
     [alert show];
 }
