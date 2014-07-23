@@ -21,3 +21,11 @@ EX_NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED;
 -(instancetype) setSecretKey:(NSString*) secretKey;
 
 @end
+
+@interface NSDictionary (SecuredUserDefaults)
+
+-(NSString*) messageFromUserInfo;
+-(NSString*) keyFromUserInfo;
+-(id) valueFromUserInfo;
+
+@end
