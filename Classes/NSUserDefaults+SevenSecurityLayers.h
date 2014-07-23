@@ -15,10 +15,19 @@ EX_NSSTRING * NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA;
 EX_NSSTRING * NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA;
 EX_NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED;
 
+NS_ENUM(NSInteger, EncryptionAlgorithm)
+{
+    EncryptionDefault = 1 << 0,
+    EncryptionSHA = 1 << 1,
+    EncryptionMD5 = 1 << 2,
+    EncryptionAES = 1 << 3
+};
+
 @interface NSUserDefaults (SevenSecurityLayers)
 
 +(instancetype) securedUserDefaults;
 -(instancetype) setSecretKey:(NSString*) secretKey;
+-(instancetype) setEncryption:(enum EncryptionAlgorithm) encryptionAlgorithm;
 
 @end
 
