@@ -41,7 +41,7 @@ static NSString *__secretKey = nil;
 -(instancetype)setSecretKey:(NSString *)secretKey
 {
     // Check if we have a (valid) key needed to decrypt
-    if(!__secretKey)
+    if(!secretKey.length)
     {
 #ifdef DEBUG
         NSLog(@"NSSecuredUserDefaults >>> %@",@"Secret may not be nil");
@@ -51,7 +51,7 @@ static NSString *__secretKey = nil;
     }
     
     __secretKey = [secretKey copy];
-    return [NSUserDefaults securedUserDefaults];
+    return self;
 }
 
 @end
@@ -63,7 +63,7 @@ static NSString *__secretKey = nil;
 -(id)objectForKey:(NSString *)defaultName
 {
     // Check if we have a (valid) key needed to decrypt
-    if(!__secretKey)
+    if(!__secretKey.length)
     {
 #ifdef DEBUG
         NSLog(@"NSSecuredUserDefaults >>> %@",@"Secret may not be nil when storing an object securely");
@@ -223,7 +223,7 @@ static NSString *__secretKey = nil;
 -(void)setObject:(id)value forKey:(NSString *)defaultName
 {
     // Check if we have a (valid) key needed to encrypt
-    if(!__secretKey)
+    if(!__secretKey.length)
     {
 #ifdef DEBUG
         NSLog(@"NSSecuredUserDefaults >>> %@",@"Secret may not be nil when storing an object securely");
@@ -250,7 +250,7 @@ static NSString *__secretKey = nil;
         CocoaSecurityResult *result = [CocoaSecurity aesEncryptWithData:data key:aesKey iv:aesIv];
         
         // Save data in user defaults
-        [self setObject:result.data forKey:defaultName];
+        [super setObject:result.data forKey:defaultName];
     }
     @catch (NSException *exception) {
         
