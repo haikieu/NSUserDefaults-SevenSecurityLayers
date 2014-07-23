@@ -1,7 +1,7 @@
 NSUserDefaults+SevenSecurityLayers.h 
 =====================
 
-* A category which provides an encrytion layer for NSUserDefaults to securely save data . 
+* A category which provides an encryption layer for NSUserDefaults to securely save data . 
 * Using strong AES 356-bit encryption
 
 -------------------------------------
@@ -38,7 +38,7 @@ NSUserDefault *pref = [[NSUserDefault securedUserDefaults] setSecretKey:@"Your s
 //Save data
 
 [pref setBool:YES forKey:@"DataIsSecured"];
-[pref setString:@"AES 356-bit" forKey:@"KindOfEncrytion"];
+[pref setString:@"AES 356-bit" forKey:@"KindOfEncryption"];
 
 [pref synchronize];
 
@@ -53,9 +53,9 @@ NSString * yourString = [pref stringForKey:@"KindOfEncrytion"];
 
 ```
 
-### Supported Property Types
+### Supported Encryption Types
 
-SecuredNSUserDefaults supports the following property types:
+Seven Security Layers Solution supports the following property types:
 
  * NSInteger
  * NSString
