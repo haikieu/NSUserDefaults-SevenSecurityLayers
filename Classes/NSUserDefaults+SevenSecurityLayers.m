@@ -9,8 +9,6 @@
 #import "NSUserDefaults+SevenSecurityLayers.h"
 #import "CocoaSecurity.h"
 
-
-
 #define kStoredObjectKey @"storedObject"
 #define SUITE_NAME       @"com.hk.SevenSecurityLayers.userdefaults"
 

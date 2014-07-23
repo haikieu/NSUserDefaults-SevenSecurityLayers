@@ -5,32 +5,32 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>14D63DB6-BEC0-427D-9C2E-418056394B29</string>
+	<string>3F7107CF-4300-4601-A416-E559E5C01FC1</string>
 	<key>IDESourceControlProjectName</key>
 	<string>DemoProject</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>1EC556C9-C83F-489E-9164-7CDF65465EBE</key>
-		<string>https://github.com/haikieu/NSUserDefaults-SecuredUserDefaults.git</string>
+		<key>EF91EADC-9742-4FDA-ABFB-62F380C172AD</key>
+		<string>https://github.com/haikieu/NSUserDefaults-SevenSecurityLayers.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>trunk/DemoProject/DemoProject/DemoProject.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>1EC556C9-C83F-489E-9164-7CDF65465EBE</key>
+		<key>EF91EADC-9742-4FDA-ABFB-62F380C172AD</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectRepositoryRootDictionary</key>
 	<dict>
-		<key>1EC556C9-C83F-489E-9164-7CDF65465EBE</key>
-		<string>https://github.com/haikieu/NSUserDefaults-SecuredUserDefaults.git</string>
+		<key>EF91EADC-9742-4FDA-ABFB-62F380C172AD</key>
+		<string>https://github.com/haikieu/NSUserDefaults-SevenSecurityLayers.git</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/haikieu/NSUserDefaults-SecuredUserDefaults.git/trunk/DemoProject/DemoProject/DemoProject.xcworkspace</string>
+	<string>https://github.com/haikieu/NSUserDefaults-SevenSecurityLayers.git/trunk/DemoProject/DemoProject/DemoProject.xcworkspace</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>1EC556C9-C83F-489E-9164-7CDF65465EBE</string>
+	<string>EF91EADC-9742-4FDA-ABFB-62F380C172AD</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -38,12 +38,14 @@
 			<string>branches</string>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.subversion</string>
+			<key>IDESourceControlRepositoryTagsRelativeLocationKey</key>
+			<string>tags</string>
 			<key>IDESourceControlRepositoryTrunkRelativeLocationKey</key>
 			<string>trunk</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>1EC556C9-C83F-489E-9164-7CDF65465EBE</string>
+			<string>EF91EADC-9742-4FDA-ABFB-62F380C172AD</string>
 			<key>IDESourceControlWCCName</key>
-			<string>NSUserDefaults-SecuredUserDefaults.git</string>
+			<string>NSUserDefaults-SevenSecurityLayers.git</string>
 		</dict>
 	</array>
 </dict>
