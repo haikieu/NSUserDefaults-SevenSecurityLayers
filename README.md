@@ -1,5 +1,6 @@
-NSUserDefaults+SecuredUserDefaults.h 
+NSUserDefaults+SevenSecurityLayers.h 
 =====================
+
 * A category which provides an encrytion layer for NSUserDefaults to securely save data . 
 * Using strong AES 356-bit encryption
 
@@ -17,10 +18,10 @@ Note: Remember to install dependency first
 
 -----------------------------------
 
-In the implementation file, import NSUserDefaults+SecuredUserDefaults.h
+In the implementation file, import NSUserDefaults+SevenSecurityLayers.h
 
 ```objective-c
-#import "NSUserDefaults+SecuredUserDefaults.h"
+#import "NSUserDefaults+SevenSecurityLayers.h"
 ```
 Init a secured UserDefaults with a secret key.
 
@@ -28,7 +29,7 @@ Init a secured UserDefaults with a secret key.
 
 //Recommend: Should put the secret key in implementation file to secure your key.
 
-NSUserDefault *pref = [[NSUserDefault securedUserDefaults] setSecretkey:@"Your secret key"];
+NSUserDefault *pref = [[NSUserDefault securedUserDefaults] setSecretKey:@"Your secret key"];
 
 ```
 
