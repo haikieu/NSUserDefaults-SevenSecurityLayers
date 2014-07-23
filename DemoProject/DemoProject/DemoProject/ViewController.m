@@ -54,7 +54,7 @@
 {
     NSDictionary *userInfo = notification.userInfo;
     
-    NSString *message = [userInfo objectForKey:@"message"];
+    NSString *message = [userInfo messageFromUserInfo];
     
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Exceptional Case" message:message delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
     
@@ -66,9 +66,9 @@
 {
     NSDictionary *userInfo = notification.userInfo;
     
-    NSString *message = [userInfo objectForKey:@"message"];
-    NSString *key = [userInfo objectForKey:@"key"];
-    NSString *value = [userInfo objectForKey:@"value"];
+    NSString *message = [userInfo messageFromUserInfo];
+    NSString *key = [userInfo keyFromUserInfo];
+    NSString *value = [userInfo valueFromUserInfo];
     
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Exceptional Case" message:message delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
     
@@ -80,9 +80,9 @@
     NSDictionary *userInfo = notification.userInfo;
     
     NSString *message =
-    [userInfo objectForKey:@"message"];
-    NSString *key = [userInfo objectForKey:@"key"];
-    NSString *value = [userInfo objectForKey:@"value"];
+    [userInfo messageFromUserInfo];
+    NSString *key = [userInfo keyFromUserInfo];
+    NSString *value = [userInfo valueFromUserInfo];
     
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Exceptional Case" message:message delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
     
@@ -93,9 +93,9 @@
 {
     NSDictionary *userInfo = notification.userInfo;
     
-    NSString *message = [userInfo objectForKey:@"message"];
-    NSString *key = [userInfo objectForKey:@"key"];
-    NSString *value = [userInfo objectForKey:@"value"];
+    NSString *message = [userInfo messageFromUserInfo];
+    NSString *key = [userInfo keyFromUserInfo];
+    NSString *value = [userInfo valueFromUserInfo];
     
     UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Exceptional Case" message:message delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
     
