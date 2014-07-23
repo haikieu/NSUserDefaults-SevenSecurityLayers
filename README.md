@@ -32,9 +32,9 @@ NSUserDefault *pref = [[NSUserDefault securedUserDefaults] setSecretkey:@"Your s
 
 ```
 
-//Save data
-
 ```objective-c
+
+//Save data
 
 [pref setBool:YES forKey:@"DataIsSecured"];
 [pref setString:@"AES 356-bit" forKey:@"KindOfEncrytion"];
@@ -42,9 +42,10 @@ NSUserDefault *pref = [[NSUserDefault securedUserDefaults] setSecretkey:@"Your s
 [pref synchronize];
 
 ```
-//Retrieve data
 
 ```objective-c
+
+//Retrieve data
 
 bool yourBool = [pref boolForKey:@"DataIsSecured"];
 NSString * yourString = [pref stringForKey:@"KindOfEncrytion"];
