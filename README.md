@@ -28,15 +28,13 @@ Init a secured UserDefaults with a secret key.
 
 //Recommend: Should put the secret key in implementation file to secure your key.
 
-[[NSUserDefault securedUserDefaults] setSecretkey:@"Your secret key"];
+NSUserDefault *pref = [[NSUserDefault securedUserDefaults] setSecretkey:@"Your secret key"];
 
 ```
 
-Save data
+//Save data
 
 ```objective-c
-
-NSUserDefault *pref = [[NSUserDefault securedUserDefaults] setSecretkey:@"Your secret key"];
 
 [pref setBool:YES forKey:@"DataIsSecured"];
 [pref setString:@"AES 356-bit" forKey:@"KindOfEncrytion"];
@@ -44,7 +42,7 @@ NSUserDefault *pref = [[NSUserDefault securedUserDefaults] setSecretkey:@"Your s
 [pref synchronize];
 
 ```
-Retrieve data
+//Retrieve data
 
 ```objective-c
 
