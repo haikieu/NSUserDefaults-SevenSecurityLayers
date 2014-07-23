@@ -14,6 +14,7 @@
 
 #define NSSTRING const NSString
 
+NSSTRING * NOTIFICATION_SECRET_KEY_NOT_SET             = @"NOTIFICATION_SECRET_KEY_NOT_SET";
 NSSTRING * NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA = @"NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA";
 NSSTRING * NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA    = @"NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA";
 NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED  = @"NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED";
@@ -27,7 +28,7 @@ NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED  = @"NOTIFICATION_STORED_D
     enum EncryptionAlgorithm _encryption;
 }
 
-#pragma mark Implemement category
+#pragma mark - Implemement category
 
 static id __securedObj = nil;
 +(instancetype)securedUserDefaults
@@ -67,7 +68,7 @@ static id __securedObj = nil;
     return self;
 }
 
-#pragma mark Encryption & Decryption
+#pragma mark - Encryption & Decryption
 
 -(NSData*) encryptData:(NSData*) data key:(NSString*) key
 {
@@ -79,7 +80,7 @@ static id __securedObj = nil;
     return nil;
 }
 
-#pragma mark Getter method
+#pragma mark - Getter method
 
 -(void)setObject:(id)value forKey:(NSString *)defaultName
 {
@@ -283,7 +284,7 @@ static id __securedObj = nil;
 	}
 }
 
-#pragma Setter method
+#pragma mark - Setter method
 
 - (void)setBool:(BOOL)value forKey:(NSString *)defaultName
 {
@@ -310,7 +311,7 @@ static id __securedObj = nil;
     [self setObject:url forKey:defaultName];
 }
 
-#pragma mark throw Exception
+#pragma mark - throw Exception
 
 -(void) raiseEncryptionKeyException
 {
@@ -318,18 +319,8 @@ static id __securedObj = nil;
 }
 
 @end
-//##########################################################################################
-#pragma mark Implement NSDictionary+SevenSecurityLayers
-//##########################################################################################
-@implementation NSDictionary (SevenSecurityLayers)
-
--(NSString *)messageFromUserInfo    {   return [[self objectForKey:@"message"] description];    }
--(NSString *)keyFromUserInfo        {   return [[self objectForKey:@"key"] description];        }
--(id)valueFromUserInfo              {   return [self objectForKey:@"value"];                    }
-
-@end
 //################################################################################################################
-#pragma mark Implemement NSUserDefaults+SevenSecurityLayers.h
+#pragma mark - Implement NSUserDefaults+SevenSecurityLayers.h
 //################################################################################################################
 @implementation NSUserDefaults (SevenSecurityLayers)
 
@@ -342,11 +333,21 @@ static id __securedObj = nil;
 
 @end
 //################################################################################################################
-#pragma mark - UAObfuscatedString
+#pragma mark - Implement NSDictionary+SevenSecurityLayers
+//################################################################################################################
+@implementation NSDictionary (SevenSecurityLayers)
+
+-(NSString *)messageFromUserInfo    {   return [[self objectForKey:@"message"] description];    }
+-(NSString *)keyFromUserInfo        {   return [[self objectForKey:@"key"] description];        }
+-(id)valueFromUserInfo              {   return [self objectForKey:@"value"];                    }
+
+@end
+//################################################################################################################
+#pragma mark - Implement NSString+SevenSecurityLayers
 //################################################################################################################
 @implementation NSString (SevenSecurityLayers)
 
-#pragma mark - a-z
+#pragma mark - Obfuscating a-z
 - (NSString *)a { return [self stringByAppendingString:@"a"]; }
 - (NSString *)b { return [self stringByAppendingString:@"b"]; }
 - (NSString *)c { return [self stringByAppendingString:@"c"]; }
@@ -374,7 +375,7 @@ static id __securedObj = nil;
 - (NSString *)y { return [self stringByAppendingString:@"y"]; }
 - (NSString *)z { return [self stringByAppendingString:@"z"]; }
 
-#pragma mark - A-Z
+#pragma mark - Obfuscating A-Z
 - (NSString *)A { return [self stringByAppendingString:@"A"]; }
 - (NSString *)B { return [self stringByAppendingString:@"B"]; }
 - (NSString *)C { return [self stringByAppendingString:@"C"]; }
@@ -402,7 +403,7 @@ static id __securedObj = nil;
 - (NSString *)Y { return [self stringByAppendingString:@"Y"]; }
 - (NSString *)Z { return [self stringByAppendingString:@"Z"]; }
 
-#pragma mark - Numbers
+#pragma mark - Obfuscating Numbers
 - (NSString *)_1 { return [self stringByAppendingString:@"1"]; }
 - (NSString *)_2 { return [self stringByAppendingString:@"2"]; }
 - (NSString *)_3 { return [self stringByAppendingString:@"3"]; }
@@ -414,7 +415,7 @@ static id __securedObj = nil;
 - (NSString *)_9 { return [self stringByAppendingString:@"9"]; }
 - (NSString *)_0 { return [self stringByAppendingString:@"0"]; }
 
-#pragma mark - Punctuation
+#pragma mark - Obfuscating Punctuation
 - (NSString *)space { return [self stringByAppendingString:@" "]; }
 - (NSString *)point { return [self stringByAppendingString:@"."]; }
 - (NSString *)dash { return [self stringByAppendingString:@"-"]; }
@@ -446,7 +447,7 @@ static id __securedObj = nil;
 - (NSString *)greater_than { return [self stringByAppendingString:@">"]; }
 - (NSString *)underscore { return [self stringByAppendingString:@"_"]; }
 
-#pragma mark - Aliases
+#pragma mark - Obfuscating Aliases
 - (NSString *)_ { return [self space]; }
 - (NSString *)dot { return [self point]; }
 

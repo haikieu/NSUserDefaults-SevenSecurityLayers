@@ -10,10 +10,23 @@
 //  Reference : https://github.com/nielsmouthaan/SecureNSUserDefaults
 //
 
+/*
+7  security layers solution
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+1) Encrypt data (available)
+2) stricted key rule
+3) Obfuscate secret key (available)
+4) Mutli encryption (On-going)
+5) Detect data hijack
+6) Bind UserDefault to device hardware
+7) Frozen data preference file
+*/
+
 #import <Foundation/Foundation.h>
 
 #define EX_NSSTRING extern const NSString
 
+EX_NSSTRING * NOTIFICATION_SECRET_KEY_NOT_SET __attribute__((deprecated("not support this anymore!")));;
 EX_NSSTRING * NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA;
 EX_NSSTRING * NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA;
 EX_NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED;
