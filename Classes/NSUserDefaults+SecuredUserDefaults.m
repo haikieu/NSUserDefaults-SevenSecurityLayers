@@ -36,17 +36,17 @@ NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED  = @"NOTIFICATION_STORED_D
 
 -(NSString *)messageFromUserInfo
 {
-    return nil;
+    return [[self objectForKey:@"message"] description];
 }
 
 -(NSString *)keyFromUserInfo
 {
-    return nil;
+    return [[self objectForKey:@"key"] description];
 }
 
 -(id)valueFromUserInfo
 {
-    return nil;
+    return [self objectForKey:@"value"];
 }
 
 @end
@@ -59,12 +59,12 @@ NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED  = @"NOTIFICATION_STORED_D
 
 -(NSString *)messageFromUserInfo
 {
-    return [[self objectForKey:@"message"] stringValue];
+    return [[self objectForKey:@"message"] description];
 }
 
 -(NSString *)keyFromUserInfo
 {
-    return [[self objectForKey:@"key"] stringValue];
+    return [[self objectForKey:@"key"] description];
 }
 
 -(id)valueFromUserInfo
@@ -118,7 +118,7 @@ static NSString *__secretKey = nil;
         NSLog(@"NSSecuredUserDefaults >>> %@",@"Secret may not be nil");
 #endif
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_SECRET_KEY_NOT_SET copy] object:self userInfo:[@{@"message": @"Secret may not be nil"} securedCopy]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_SECRET_KEY_NOT_SET copy] object:self userInfo:@{@"message": @"Secret may not be nil"}];
     }
     
     __secretKey = [secretKey copy];
@@ -136,7 +136,7 @@ static NSString *__secretKey = nil;
         NSLog(@"NSSecuredUserDefaults >>> %@",@"Secret may not be nil when storing an object securely");
 #endif
 
-        [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_SECRET_KEY_NOT_SET copy] object:self userInfo:[@{@"message": @"Secret may not be nil when storing an object securely",@"key":defaultName} securedCopy]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_SECRET_KEY_NOT_SET copy] object:self userInfo:@{@"message": @"Secret may not be nil when storing an object securely",@"key":defaultName}];
         
         return nil;
     }
@@ -172,7 +172,7 @@ static NSString *__secretKey = nil;
         // Whoops!
         NSLog(@"Cannot receive object from encrypted data storage: %@",exception.reason);
 #endif
-        [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA copy] object:self userInfo:[@{@"message": [NSString stringWithFormat:@"Cannot receive object from encrypted data storage: %@",exception.reason],@"key":defaultName,@"value":@""} securedCopy]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA copy] object:self userInfo:@{@"message": [NSString stringWithFormat:@"Cannot receive object from encrypted data storage: %@",exception.reason],@"key":defaultName,@"value":@""}];
         
         return nil;
     }
@@ -295,7 +295,7 @@ static NSString *__secretKey = nil;
 #ifdef DEBUG
         NSLog(@"NSSecuredUserDefaults >>> %@",@"Secret may not be nil when storing an object securely");
 #endif
-        [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_SECRET_KEY_NOT_SET copy] object:self userInfo:[@{@"message": @"Secret may not be nil when storing an object securely",@"key":defaultName} securedCopy]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_SECRET_KEY_NOT_SET copy] object:self userInfo:@{@"message": @"Secret may not be nil when storing an object securely",@"key":defaultName}];
         
         return;
     }
@@ -326,7 +326,7 @@ static NSString *__secretKey = nil;
         NSLog(@"Cannot store object securely: %@",exception.reason);
 #endif
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA copy] object:self userInfo:[@{@"message": [NSString stringWithFormat:@"Cannot store object securely: %@",exception.reason],@"key":defaultName,@"value":value} securedCopy]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA copy] object:self userInfo:@{@"message": [NSString stringWithFormat:@"Cannot store object securely: %@",exception.reason],@"key":defaultName,@"value":value}];
     }
     @finally {}
 }
