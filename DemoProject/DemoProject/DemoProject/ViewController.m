@@ -33,6 +33,12 @@
 	// Do any additional setup after loading the view, typically from a nib.
     _pref = [NSUserDefaults securedUserDefaults];
     _key1.enabled = _key2.enabled = _key3.enabled = NO;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(NOTIFICATION_SECRET_KEY_NOT_SET:) name:[NOTIFICATION_SECRET_KEY_NOT_SET copy] object:_pref];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA:) name:[NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA copy] object:_pref];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA:) name:[NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA copy] object:_pref];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED:) name:[NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED copy] object:_pref];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,6 +46,63 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+#pragma mark Notification handler
+
+-(void) NOTIFICATION_SECRET_KEY_NOT_SET:(NSNotification*) notification
+{
+    NSDictionary *userInfo = notification.userInfo;
+    
+    NSString *message = [userInfo objectForKey:@"message"];
+    
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Exceptional Case" message:message delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+    
+    [alert show];
+    
+}
+
+-(void) NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA:(NSNotification*) notification
+{
+    NSDictionary *userInfo = notification.userInfo;
+    
+    NSString *message = [userInfo objectForKey:@"message"];
+    NSString *key = [userInfo objectForKey:@"key"];
+    NSString *value = [userInfo objectForKey:@"value"];
+    
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Exceptional Case" message:message delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+    
+    [alert show];
+}
+
+-(void) NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA:(NSNotification*) notification
+{
+    NSDictionary *userInfo = notification.userInfo;
+    
+    NSString *message =
+    [userInfo objectForKey:@"message"];
+    NSString *key = [userInfo objectForKey:@"key"];
+    NSString *value = [userInfo objectForKey:@"value"];
+    
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Exceptional Case" message:message delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+    
+    [alert show];
+}
+
+-(void) NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED:(NSNotification*) notification
+{
+    NSDictionary *userInfo = notification.userInfo;
+    
+    NSString *message = [userInfo objectForKey:@"message"];
+    NSString *key = [userInfo objectForKey:@"key"];
+    NSString *value = [userInfo objectForKey:@"value"];
+    
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Exceptional Case" message:message delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+    
+    [alert show];
+}
+
+#pragma mark Event Handler
 
 - (IBAction)onTapResetBtn:(id)sender {
     [_pref setObject:@"" forKey:_key1.text];
