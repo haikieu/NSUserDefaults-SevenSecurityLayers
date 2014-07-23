@@ -18,42 +18,13 @@ NSSTRING * NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA = @"NOTIFICATION_CANNOT_R
 NSSTRING * NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA    = @"NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA";
 NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED  = @"NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED";
 
-#pragma mark Implement NSDictionary+SevenSecurityLayers
-
-@implementation NSDictionary (SevenSecurityLayers)
-
--(NSString *)messageFromUserInfo    {   return [[self objectForKey:@"message"] description];    }
--(NSString *)keyFromUserInfo        {   return [[self objectForKey:@"key"] description];        }
--(id)valueFromUserInfo              {   return [self objectForKey:@"value"];                    }
-
-@end
-
+//################################################################################################################
 @interface NSSecuredUserDefaults : NSUserDefaults @end
-
-#pragma mark Implemement NSUserDefaults+SevenSecurityLayers.h
-
-@implementation NSUserDefaults (SevenSecurityLayers)
-
-+(instancetype)securedUserDefaults
-{
-    return [NSSecuredUserDefaults securedUserDefaults];
-}
--(instancetype)setSecretKey:(NSString *)secretKey                           {   return nil; }
--(instancetype)setEncryption:(enum EncryptionAlgorithm)encryptionAlgorithm  {   return nil; }
-
-@end
-
+//################################################################################################################
 @implementation NSSecuredUserDefaults
 {
     __strong NSString *_secretKey;
     enum EncryptionAlgorithm _encryption;
-}
-
-#pragma mark throw Exception
-
--(void) raiseEncryptionKeyException
-{
-    [[NSException exceptionWithName:@"EncryptionKeyException" reason:@"Secret key should not be nil" userInfo:nil] raise];
 }
 
 #pragma mark Implemement category
@@ -109,10 +80,51 @@ static id __securedObj = nil;
 }
 
 #pragma mark Getter method
-/**
- *  Reference : https://github.com/nielsmouthaan/SecureNSUserDefaults
- *
- */
+
+-(void)setObject:(id)value forKey:(NSString *)defaultName
+{
+    // Check if we have a (valid) key needed to encrypt
+    if(!_secretKey.length)
+    {
+#ifdef DEBUG
+        NSLog(@"NSSecuredUserDefaults >>> %@",@"Secret may not be nil when storing an object securely");
+#endif
+        [self raiseEncryptionKeyException];
+        
+        return;
+    }
+    
+    @try {
+        
+        // Create data object from dictionary
+        NSMutableData *data = [[NSMutableData alloc] init];
+        NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+        [archiver encodeObject:value forKey:kStoredObjectKey];
+        [archiver finishEncoding];
+        
+        // Generate key and IV
+        CocoaSecurityResult *keyData = [CocoaSecurity sha384:_secretKey];
+        NSData *aesKey = [keyData.data subdataWithRange:NSMakeRange(0, 32)];
+        NSData *aesIv = [keyData.data subdataWithRange:NSMakeRange(32, 16)];
+        
+        // Encrypt data
+        CocoaSecurityResult *result = [CocoaSecurity aesEncryptWithData:data key:aesKey iv:aesIv];
+        
+        // Save data in user defaults
+        [super setObject:result.data forKey:defaultName];
+    }
+    @catch (NSException *exception) {
+        
+#ifdef DEBUG
+        // Whoops!
+        NSLog(@"Cannot store object securely: %@",exception.reason);
+#endif
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA copy] object:self userInfo:@{@"message": [NSString stringWithFormat:@"Cannot store object securely: %@",exception.reason],@"key":defaultName,@"value":value}];
+    }
+    @finally {}
+}
+
 -(id)objectForKey:(NSString *)defaultName
 {
     // Check if we have a (valid) key needed to decrypt
@@ -272,54 +284,6 @@ static id __securedObj = nil;
 }
 
 #pragma Setter method
-/**
- *  Reference : https://github.com/nielsmouthaan/SecureNSUserDefaults
- *
- */
--(void)setObject:(id)value forKey:(NSString *)defaultName
-{
-    // Check if we have a (valid) key needed to encrypt
-    if(!_secretKey.length)
-    {
-#ifdef DEBUG
-        NSLog(@"NSSecuredUserDefaults >>> %@",@"Secret may not be nil when storing an object securely");
-#endif
-        [self raiseEncryptionKeyException];
-        
-        return;
-    }
-    
-    @try {
-        
-        // Create data object from dictionary
-        NSMutableData *data = [[NSMutableData alloc] init];
-        NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-        [archiver encodeObject:value forKey:kStoredObjectKey];
-        [archiver finishEncoding];
-        
-        // Generate key and IV
-        CocoaSecurityResult *keyData = [CocoaSecurity sha384:_secretKey];
-        NSData *aesKey = [keyData.data subdataWithRange:NSMakeRange(0, 32)];
-        NSData *aesIv = [keyData.data subdataWithRange:NSMakeRange(32, 16)];
-        
-        // Encrypt data
-        CocoaSecurityResult *result = [CocoaSecurity aesEncryptWithData:data key:aesKey iv:aesIv];
-        
-        // Save data in user defaults
-        [super setObject:result.data forKey:defaultName];
-    }
-    @catch (NSException *exception) {
-        
-#ifdef DEBUG
-        // Whoops!
-        NSLog(@"Cannot store object securely: %@",exception.reason);
-#endif
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA copy] object:self userInfo:@{@"message": [NSString stringWithFormat:@"Cannot store object securely: %@",exception.reason],@"key":defaultName,@"value":value}];
-    }
-    @finally {}
-}
-
 
 - (void)setBool:(BOOL)value forKey:(NSString *)defaultName
 {
@@ -346,10 +310,40 @@ static id __securedObj = nil;
     [self setObject:url forKey:defaultName];
 }
 
+#pragma mark throw Exception
+
+-(void) raiseEncryptionKeyException
+{
+    [[NSException exceptionWithName:@"EncryptionKeyException" reason:@"Secret key should not be nil" userInfo:nil] raise];
+}
+
 @end
+//##########################################################################################
+#pragma mark Implement NSDictionary+SevenSecurityLayers
+//##########################################################################################
+@implementation NSDictionary (SevenSecurityLayers)
 
+-(NSString *)messageFromUserInfo    {   return [[self objectForKey:@"message"] description];    }
+-(NSString *)keyFromUserInfo        {   return [[self objectForKey:@"key"] description];        }
+-(id)valueFromUserInfo              {   return [self objectForKey:@"value"];                    }
+
+@end
+//################################################################################################################
+#pragma mark Implemement NSUserDefaults+SevenSecurityLayers.h
+//################################################################################################################
+@implementation NSUserDefaults (SevenSecurityLayers)
+
++(instancetype)securedUserDefaults
+{
+    return [NSSecuredUserDefaults securedUserDefaults];
+}
+-(instancetype)setSecretKey:(NSString *)secretKey                           {   return nil; }
+-(instancetype)setEncryption:(enum EncryptionAlgorithm)encryptionAlgorithm  {   return nil; }
+
+@end
+//################################################################################################################
 #pragma mark - UAObfuscatedString
-
+//################################################################################################################
 @implementation NSString (SevenSecurityLayers)
 
 #pragma mark - a-z
@@ -457,3 +451,4 @@ static id __securedObj = nil;
 - (NSString *)dot { return [self point]; }
 
 @end
+//################################################################################################################
