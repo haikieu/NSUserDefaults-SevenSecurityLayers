@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 haikieu2907@gmail.com. All rights reserved.
 //
 //
-//  Reference : https://github.com/UrbanApps/UAObfuscatedString
-//  Reference : https://github.com/nielsmouthaan/SecureNSUserDefaults
+//  Reference https://github.com/UrbanApps/UAObfuscatedString
+//  Reference https://github.com/nielsmouthaan/SecureNSUserDefaults
 //
 
 /*
@@ -20,13 +20,16 @@
 5) Detect data hijack
 6) Bind UserDefault to device hardware
 7) Frozen data preference file
+ 
+* Support non-secured storage (done)
+* Support iCloud backup (on-going)
 */
 
 #import <Foundation/Foundation.h>
 
 #define EX_NSSTRING extern const NSString
 
-EX_NSSTRING * NOTIFICATION_SECRET_KEY_NOT_SET __attribute__((deprecated("not support this anymore!")));;
+EX_NSSTRING * NOTIFICATION_SECRET_KEY_NOT_SET __attribute__((deprecated("not support this anymore!")));
 EX_NSSTRING * NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA;
 EX_NSSTRING * NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA;
 EX_NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED;
@@ -63,6 +66,15 @@ NS_ENUM(NSInteger, iCloudMode)
 @end
 //################################################################################################################
 @interface NSString (SevenSecurityLayers)
+
+- (NSString *) cloud __attribute__((unavailable("not support yet!")));
+- (NSString *) nonSecured;
+- (BOOL) isCloud __attribute__((unavailable("not support this yet!")));
+- (BOOL) isNonSecured;
+
+@end
+//################################################################################################################
+@interface NSString (UAObfuscatedString)
 
 - (NSString *)a;
 - (NSString *)b;
