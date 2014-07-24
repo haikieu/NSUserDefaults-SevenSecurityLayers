@@ -34,9 +34,15 @@ EX_NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED;
 NS_ENUM(NSInteger, EncryptionAlgorithm)
 {
     EncryptionDefault = 1 << 0,
-    EncryptionSHA = 1 << 1,
-    EncryptionMD5 = 1 << 2,
-    EncryptionAES = 1 << 3
+    EncryptionSHA     = 1 << 1,
+    EncryptionMD5     = 1 << 2,
+    EncryptionAES     = 1 << 3
+};
+
+NS_ENUM(NSInteger, iCloudMode)
+{
+    iCloudDefault = 1 <<0,
+    iCloudAll     = 1 <<1
 };
 //################################################################################################################
 @interface NSUserDefaults (SevenSecurityLayers)
@@ -44,6 +50,7 @@ NS_ENUM(NSInteger, EncryptionAlgorithm)
 +(instancetype) securedUserDefaults;
 -(instancetype) setSecretKey:(NSString*) secretKey;
 -(instancetype) setEncryption:(enum EncryptionAlgorithm) encryptionAlgorithm;
+-(instancetype) setiCloud:(enum iCloudMode) iCloudMode;
 
 @end
 //################################################################################################################

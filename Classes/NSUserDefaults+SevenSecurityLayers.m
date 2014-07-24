@@ -68,6 +68,11 @@ static id __securedObj = nil;
     return self;
 }
 
+#pragma mark - traditional storage
+
+#pragma mark - iCloud
+
+
 #pragma mark - Encryption & Decryption
 
 -(NSData*) encryptData:(NSData*) data key:(NSString*) key
@@ -80,7 +85,7 @@ static id __securedObj = nil;
     return nil;
 }
 
-#pragma mark - Getter method
+#pragma mark - Storage business
 
 -(void)setObject:(id)value forKey:(NSString *)defaultName
 {
@@ -178,6 +183,8 @@ static id __securedObj = nil;
     
     @finally {}
 }
+
+#pragma mark - Getter method
 
 -(NSData *)dataForKey:(NSString *)defaultName
 {
@@ -342,6 +349,7 @@ static id __securedObj = nil;
 }
 -(instancetype)setSecretKey:(NSString *)secretKey                           {   return nil; }
 -(instancetype)setEncryption:(enum EncryptionAlgorithm)encryptionAlgorithm  {   return nil; }
+-(instancetype)setiCloud:(enum iCloudMode)iCloudMode                        {   return nil; }
 
 @end
 //################################################################################################################
