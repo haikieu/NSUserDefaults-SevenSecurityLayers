@@ -85,9 +85,7 @@ static id __securedObj = nil;
     return nil;
 }
 
-#pragma mark - Storage business
-
--(void)setObject:(id)value forKey:(NSString *)defaultName
+-(void)setSecuredObject:(id)value forKey:(NSString *)defaultName
 {
     // Check if we have a (valid) key needed to encrypt
     if(!_secretKey.length)
@@ -131,7 +129,7 @@ static id __securedObj = nil;
     @finally {}
 }
 
--(id)objectForKey:(NSString *)defaultName
+-(id)securedObjectForKey:(NSString *)defaultName
 {
     // Check if we have a (valid) key needed to decrypt
     if(!_secretKey.length)
@@ -139,7 +137,6 @@ static id __securedObj = nil;
 #ifdef DEBUG
         NSLog(@"NSSecuredUserDefaults >>> %@",@"Secret may not be nil or blank when storing an object securely");
 #endif
-
         [self raiseEncryptionKeyException];
         
         return nil;
@@ -182,6 +179,31 @@ static id __securedObj = nil;
     }
     
     @finally {}
+}
+
+
+#pragma mark - Storage business
+
+-(void)setObject:(id)value forKey:(NSString *)defaultName
+{
+    if(defaultName.isNonSecured)
+    {
+        [super setObject:value forKey:defaultName];
+    }
+    else
+    {
+        [self setSecuredObject:value forKey:defaultName];
+    }
+}
+
+-(id)objectForKey:(NSString *)defaultName
+{
+    if(defaultName.isNonSecured)
+    {
+        return [super objectForKey:defaultName];
+    }
+    
+    return [self securedObjectForKey:defaultName];
 }
 
 #pragma mark - Getter method
@@ -366,6 +388,24 @@ static id __securedObj = nil;
 #pragma mark - Implement NSString+SevenSecurityLayers
 //################################################################################################################
 @implementation NSString (SevenSecurityLayers)
+
+- (NSString *)cloud { return [self stringByAppendingString:@"@cloud"]; }
+- (NSString *)nonSecured { return [self stringByAppendingString:@"@nonSecured"]; }
+
+-(BOOL)isCloud
+{
+    return !([self rangeOfString:@"".cloud options:NSCaseInsensitiveSearch].location == NSNotFound);
+}
+-(BOOL)isNonSecured
+{
+    return !([self rangeOfString:@"".nonSecured options:NSCaseInsensitiveSearch].location == NSNotFound);
+}
+
+@end
+//################################################################################################################
+#pragma mark - Implement NSString+UAObfuscatedString
+//################################################################################################################
+@implementation NSString (UAObfuscatedString)
 
 #pragma mark - Obfuscating a-z
 - (NSString *)a { return [self stringByAppendingString:@"a"]; }
