@@ -318,6 +318,18 @@ static id __securedObj = nil;
     [[NSException exceptionWithName:@"EncryptionKeyException" reason:@"Secret key should not be nil" userInfo:nil] raise];
 }
 
+#pragma mark - Debug
+-(NSString *)debugDescription
+{
+    NSString * dic = [super debugDescription];
+    
+#ifdef DEBUG
+    dic = [[self dictionaryRepresentation] description];
+#endif
+    
+    return dic;
+}
+
 @end
 //################################################################################################################
 #pragma mark - Implement NSUserDefaults+SevenSecurityLayers.h
