@@ -32,7 +32,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     _pref = [NSUserDefaults securedUserDefaults];
-    _key1.enabled = _key2.enabled = _key3.enabled = NO;
+//    _key1.enabled = _key2.enabled = _key3.enabled = NO;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(NOTIFICATION_SECRET_KEY_NOT_SET:) name:[NOTIFICATION_SECRET_KEY_NOT_SET copy] object:_pref];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA:) name:[NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA copy] object:_pref];
