@@ -373,6 +373,21 @@ static id __securedObj = nil;
 -(instancetype)setEncryption:(enum EncryptionAlgorithm)encryptionAlgorithm  {   return nil; }
 -(instancetype)setiCloud:(enum iCloudMode)iCloudMode                        {   return nil; }
 
++(void)migrate:(NSUserDefaults *)source to:(NSUserDefaults *)destination clear:(BOOL)clear
+{
+    [source.dictionaryRepresentation enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+       
+        [destination setObject:obj forKey:key];
+        
+        if(clear)
+           [source removeObjectForKey:key];
+    }];
+    
+    if(clear)
+        [source synchronize];
+    [destination synchronize];
+}
+
 @end
 //################################################################################################################
 #pragma mark - Implement NSDictionary+SevenSecurityLayers
@@ -389,8 +404,8 @@ static id __securedObj = nil;
 //################################################################################################################
 @implementation NSString (SevenSecurityLayers)
 
-- (NSString *)cloud { return [self stringByAppendingString:@"@cloud"]; }
-- (NSString *)nonSecured { return [self stringByAppendingString:@"@nonSecured"]; }
+- (NSString *)cloud { return [self stringByAppendingString:@".cloud"]; }
+- (NSString *)nonSecured { return [self stringByAppendingString:@".nonSecured"]; }
 
 -(BOOL)isCloud
 {

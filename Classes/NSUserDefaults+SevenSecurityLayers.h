@@ -23,6 +23,8 @@
  
 * Support non-secured storage (done)
 * Support iCloud backup (on-going)
+* Support migrate (done)
+* Detect jailbreak (on-going)
 */
 
 #import <Foundation/Foundation.h>
@@ -34,7 +36,7 @@ EX_NSSTRING * NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA;
 EX_NSSTRING * NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA;
 EX_NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED;
 //################################################################################################################
-NS_ENUM(NSInteger, EncryptionAlgorithm)
+typedef NS_ENUM(NSInteger, EncryptionAlgorithm)
 {
     EncryptionDefault = 1 << 0,
     EncryptionSHA     = 1 << 1,
@@ -42,7 +44,7 @@ NS_ENUM(NSInteger, EncryptionAlgorithm)
     EncryptionAES     = 1 << 3
 };
 
-NS_ENUM(NSInteger, iCloudMode)
+typedef NS_ENUM(NSInteger, iCloudMode)
 {
     iCloudDefault = 1 <<0,
     iCloudAll     = 1 <<1
@@ -50,10 +52,12 @@ NS_ENUM(NSInteger, iCloudMode)
 //################################################################################################################
 @interface NSUserDefaults (SevenSecurityLayers)
 
++(void) migrate:(NSUserDefaults*) source to:(NSUserDefaults*) destination clear:(BOOL)clear;
+
 +(instancetype) securedUserDefaults;
 -(instancetype) setSecretKey:(NSString*) secretKey;
--(instancetype) setEncryption:(enum EncryptionAlgorithm) encryptionAlgorithm;
--(instancetype) setiCloud:(enum iCloudMode) iCloudMode;
+-(instancetype) setEncryption:(EncryptionAlgorithm) encryptionAlgorithm;
+-(instancetype) setiCloud:(iCloudMode) iCloudMode;
 
 @end
 //################################################################################################################
