@@ -80,9 +80,10 @@ Seven Security Layers Solution supports the following property types:
 
 Email: haikieu2907@gmail.com
 
-###Reference solution
+###Thanks to 
 
-https://github.com/nielsmouthaan/SecureNSUserDefaults
+ * https://github.com/nielsmouthaan/SecureNSUserDefaults
+ * https://github.com/UrbanApps/UAObfuscatedString
 
 ### MIT License
 
