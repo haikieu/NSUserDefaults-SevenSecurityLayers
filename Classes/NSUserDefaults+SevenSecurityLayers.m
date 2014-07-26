@@ -16,6 +16,11 @@ NSSTRING * NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA = @"NOTIFICATION_CANNOT_R
 NSSTRING * NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA    = @"NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA";
 NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED  = @"NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED";
 
+#if DEBUG
+
+#define TEST_RELEASE_MODE 0
+
+#endif
 //################################################################################################################
 @interface NSSecuredUserDefaults : NSUserDefaults @end
 //################################################################################################################
@@ -24,8 +29,8 @@ NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED  = @"NOTIFICATION_STORED_D
     __strong NSString * _secretKey;
     __strong NSString * _UUID;
     
-    NSData *_secretData;
-    NSData *_deviceIdentifierData;
+    __strong NSData *_secretData;
+    __strong NSData *_deviceIdentifierData;
     
      EncryptionAlgorithm _encryption;
 }
