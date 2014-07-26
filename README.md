@@ -40,7 +40,9 @@ NSUserDefault *pref = [[NSUserDefault securedUserDefaults] setSecretKey:@"Your s
 
 [pref setBool:YES forKey:@"DataIsSecured"];
 [pref setString:@"AES 356-bit" forKey:@"KindOfEncryption"];
-
+[pref setString:@"v1.2.0 available" forKey:@"ObfuscateKey"];
+[pref setString:@"Able to save data withou encryption" forKey@"KeepOrigin"];
+...
 [pref synchronize];
 
 ```
@@ -51,6 +53,7 @@ NSUserDefault *pref = [[NSUserDefault securedUserDefaults] setSecretKey:@"Your s
 
 bool yourBool = [pref boolForKey:@"DataIsSecured"];
 NSString * yourString = [pref stringForKey:@"KindOfEncrytion"];
+...
 
 ```
 ###Advanced usage
