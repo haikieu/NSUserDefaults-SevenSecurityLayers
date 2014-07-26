@@ -52,13 +52,33 @@ bool yourBool = [pref boolForKey:@"DataIsSecured"];
 NSString * yourString = [pref stringForKey:@"KindOfEncrytion"];
 
 ```
+###Advanced usage
+
+1. v1.2.0 available
+* Store data without encryption
+
+  `[pref setObject:@"yourValue" forKey:@"yourKey.nonSecured"];`
+  
+  Or
+  
+  `[pref setObject:@"yourValue" forKey:@"yourKey".nonSecured];`
+
+* Obfuscate your secret key
+
+~~NSString * theSecretKey = @"putYourKeyHere";~~
+
+:point_right:  `NSString * theSecretKey = @"".p.u.t.Y.o.u.r.K.e.y.H.e.r.e;`
+
+* Migrate data to secured storage
+
+`[NSUserDefaults migrate:[NSUserDefaults standardUserDefaults] to:[NSUserDefaults securedUserDefaults] clearSource:YES];`
 
 ### Supported Supported NOTIFICATION Events
 
  * `NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA`
  * `NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA`
-* `NOTIFICATION_SECRET_KEY_NOT_SET`
-* `NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED`
+ * ~~NOTIFICATION_SECRET_KEY_NOT_SET~~
+ * ~~NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED~~
 
 ### Supported Encryption Types
 
