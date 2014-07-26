@@ -19,12 +19,10 @@ Note: Remember to install dependency first
 -----------------------------------
 
 In the implementation file, import `NSUserDefaults+SevenSecurityLayers.h`
-
 ```objective-c
 #import "NSUserDefaults+SevenSecurityLayers.h"
 ```
 Initilize a secured UserDefaults with a secret key.
-
 ```objective-c
 
 //Recommend: Should put the secret key in implementation file to secure your key.
@@ -33,20 +31,18 @@ Initilize a secured UserDefaults with a secret key.
 NSUserDefault *pref = [[NSUserDefault securedUserDefaults] setSecretKey:@"Your secret key"];
 
 ```
-
 ```objective-c
 
 //Save data
 
 [pref setBool:YES forKey:@"DataIsSecured"];
 [pref setString:@"AES 356-bit" forKey:@"KindOfEncryption"];
-[pref setString:@"v1.2.0 available" forKey:@"ObfuscateKey"];
-[pref setString:@"Able to save data withou encryption" forKey@"KeepOrigin"];
+[pref setString:@"v1.2.0 available" forKey:@"ObfuscateSecretKey"];
+[pref setString:@"Able to save data without encryption" forKey@"KeepOrigin"];
 ...
 [pref synchronize];
 
 ```
-
 ```objective-c
 
 //Retrieve data
