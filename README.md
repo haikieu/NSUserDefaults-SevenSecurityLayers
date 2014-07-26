@@ -56,7 +56,7 @@ NSString * yourString = [pref stringForKey:@"KindOfEncrytion"];
 
 * **v1.2.0** available
 
-* **Obfuscate your secret key**
+ * **Obfuscate your secret key**
 
        ~~NSString * theSecretKey = @"putYourKeyHere";~~
 
@@ -64,15 +64,15 @@ NSString * yourString = [pref stringForKey:@"KindOfEncrytion"];
 
  * **Store data without encryption**
 
-     `[pref setObject:@"yourValue" forKey:@"yourKey.nonSecured"];`
+       `[pref setObject:@"yourValue" forKey:@"yourKey.nonSecured"];`
   
-      Or
+       Or
    
-     `[pref setObject:@"yourValue" forKey:@"yourKey".nonSecured];`
+       `[pref setObject:@"yourValue" forKey:@"yourKey".nonSecured];`
 
  * **Migrate data to secured storage**
 
-`[NSUserDefaults migrate:[NSUserDefaults standardUserDefaults] to:pref clearSource:YES];`
+       `[NSUserDefaults migrate:[NSUserDefaults standardUserDefaults] to:pref clearSource:YES];`
 
 ### Supported Supported NOTIFICATION Events
 
