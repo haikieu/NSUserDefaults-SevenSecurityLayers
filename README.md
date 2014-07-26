@@ -77,7 +77,7 @@ NSString * yourString = [pref stringForKey:@"KindOfEncrytion"];
 
        `[NSUserDefaults migrate:[NSUserDefaults standardUserDefaults] to:pref clearSource:YES];`
 
-### Supported Supported NOTIFICATION Events
+### Supported NOTIFICATION Events
 
  * `NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA`
  * `NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA`
