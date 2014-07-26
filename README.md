@@ -63,7 +63,7 @@ NSString * yourString = [pref stringForKey:@"KindOfEncrytion"];
 
       Shouldn't use this ~~NSString * theSecretKey = @"putYourKeyHere";~~
 
-       Right way :point_right: `NSString * theSecretKey = @"".p.u.t.Y.o.u.r.K.e.y.H.e.r.e;`
+      Try this way :point_right: `NSString * theSecretKey = @"".p.u.t.Y.o.u.r.K.e.y.H.e.r.e;`
 
  * **Store data without encryption**
 
