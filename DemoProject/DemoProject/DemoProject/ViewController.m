@@ -105,8 +105,7 @@
 #pragma mark Event Handler
 
 - (IBAction)onTapResetBtn:(id)sender {
-    [_pref setObject:@"" forKey:_key1.text];
-    [_pref synchronize];
+    [NSUserDefaults resetSecuredUserDefaults];
 }
 
 - (IBAction)onTapAboutBtn:(id)sender {
