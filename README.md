@@ -54,23 +54,23 @@ NSString * yourString = [pref stringForKey:@"KindOfEncrytion"];
 ```
 ###Advanced usage
 
-1. ####v1.2.0 available
+* **v1.2.0 available**
 
-  * **Store data without encryption**
+ * **Store data without encryption**
 
-  `[pref setObject:@"yourValue" forKey:@"yourKey.nonSecured"];`
+     `[pref setObject:@"yourValue" forKey:@"yourKey.nonSecured"];`
   
-  Or
-  
-  `[pref setObject:@"yourValue" forKey:@"yourKey".nonSecured];`
+      Or
+   
+     `[pref setObject:@"yourValue" forKey:@"yourKey".nonSecured];`
 
-  * **Obfuscate your secret key**
+ * **Obfuscate your secret key**
 
-~~NSString * theSecretKey = @"putYourKeyHere";~~
+       ~~NSString * theSecretKey = @"putYourKeyHere";~~
 
-:point_right:   `NSString * theSecretKey = @"".p.u.t.Y.o.u.r.K.e.y.H.e.r.e;`
+       :point_right: `NSString * theSecretKey = @"".p.u.t.Y.o.u.r.K.e.y.H.e.r.e;`
 
-  * **Migrate data to secured storage**
+ * **Migrate data to secured storage**
 
 `[NSUserDefaults migrate:[NSUserDefaults standardUserDefaults] to:[NSUserDefaults securedUserDefaults] clearSource:YES];`
 
