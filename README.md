@@ -6,9 +6,12 @@ NSUserDefaults+SevenSecurityLayers.h
 
 -------------------------------------
 ####Benefit: 
-###### * Secure user data just by one line of code.
+##### * Secure user data just by one line of code.
+##### * Support obfuscating your key in binary source
+##### * Able to save data without encryption
 ###### * Enable to handle exceptional case via built-in NOTIFICATION
-###### * Enable using standardUserDefaults as well as securedUserDefaults parallelly 
+###### * Enable using standardUserDefaults as well as securedUserDefaults parallelly
+
 -------------------------------------
 
 ## How to use
@@ -38,7 +41,7 @@ NSUserDefault *pref = [[NSUserDefault securedUserDefaults] setSecretKey:@"Your s
 [pref setBool:YES forKey:@"DataIsSecured"];
 [pref setString:@"AES 356-bit" forKey:@"KindOfEncryption"];
 [pref setString:@"v1.2.0 available" forKey:@"ObfuscateSecretKey"];
-[pref setString:@"Able to save data without encryption" forKey@"KeepOrigin"];
+[pref setString:@"Able to save data without encryption" forKey:@"KeepOrigin"];
 ...
 [pref synchronize];
 
