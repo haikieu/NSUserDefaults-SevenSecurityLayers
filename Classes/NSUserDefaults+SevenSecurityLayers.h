@@ -12,7 +12,8 @@
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 1) Encrypt data (available)
 2) stricted key rule
-3) Obfuscate secret key (available)
+3) Obfuscate secret key, hide secret key in binary code (available)
+3) Hash key, protect secret key in runtime
 4) Mutli encryption (On-going)
 5) Detect data hijack
 6) Bind UserDefault to device hardware
@@ -54,6 +55,7 @@ typedef NS_ENUM(NSInteger, iCloudMode)
 +(instancetype) securedUserDefaults;
 +(void) resetSecuredUserDefaults;
 -(instancetype) setSecretKey:(NSString*) secretKey;
+-(instancetype) setUUID:(NSString *)UUID;
 -(instancetype) setEncryption:(EncryptionAlgorithm) encryptionAlgorithm;
 -(instancetype) setiCloud:(iCloudMode) iCloudMode;
 
