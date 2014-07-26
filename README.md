@@ -23,11 +23,12 @@ In the implementation file, import `NSUserDefaults+SevenSecurityLayers.h`
 ```objective-c
 #import "NSUserDefaults+SevenSecurityLayers.h"
 ```
-Init a secured UserDefaults with a secret key.
+Initilize a secured UserDefaults with a secret key.
 
 ```objective-c
 
 //Recommend: Should put the secret key in implementation file to secure your key.
+//Warning: Must specify the secret key before using or you get **Exception**
 
 NSUserDefault *pref = [[NSUserDefault securedUserDefaults] setSecretKey:@"Your secret key"];
 
