@@ -359,6 +359,13 @@ static id __securedObj = nil;
     return dic;
 }
 
+#pragma mark - Reset secured userdefaults
+
++(void)resetSecuredUserDefaults
+{
+    [[NSUserDefaults securedUserDefaults] removePersistentDomainForName:SUITE_NAME];
+}
+
 @end
 //################################################################################################################
 #pragma mark - Implement NSUserDefaults+SevenSecurityLayers.h
@@ -369,6 +376,12 @@ static id __securedObj = nil;
 {
     return [NSSecuredUserDefaults securedUserDefaults];
 }
+
++(void)resetSecuredUserDefaults
+{
+    [NSSecuredUserDefaults resetSecuredUserDefaults];
+}
+
 -(instancetype)setSecretKey:(NSString *)secretKey                           {   return nil; }
 -(instancetype)setEncryption:(enum EncryptionAlgorithm)encryptionAlgorithm  {   return nil; }
 -(instancetype)setiCloud:(enum iCloudMode)iCloudMode                        {   return nil; }

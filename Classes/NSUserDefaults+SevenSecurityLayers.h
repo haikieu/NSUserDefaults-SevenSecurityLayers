@@ -55,6 +55,7 @@ typedef NS_ENUM(NSInteger, iCloudMode)
 +(void) migrate:(NSUserDefaults*) source to:(NSUserDefaults*) destination clear:(BOOL)clear;
 
 +(instancetype) securedUserDefaults;
++(void) resetSecuredUserDefaults;
 -(instancetype) setSecretKey:(NSString*) secretKey;
 -(instancetype) setEncryption:(EncryptionAlgorithm) encryptionAlgorithm;
 -(instancetype) setiCloud:(iCloudMode) iCloudMode;
