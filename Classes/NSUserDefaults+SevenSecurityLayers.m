@@ -386,7 +386,7 @@ static id __securedObj = nil;
 -(instancetype)setEncryption:(enum EncryptionAlgorithm)encryptionAlgorithm  {   return nil; }
 -(instancetype)setiCloud:(enum iCloudMode)iCloudMode                        {   return nil; }
 
-+(void)migrate:(NSUserDefaults *)source to:(NSUserDefaults *)destination clear:(BOOL)clear
++(void)migrate:(NSUserDefaults *)source to:(NSUserDefaults *)destination clearSource:(BOOL)clear
 {
     [source.dictionaryRepresentation enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
        
