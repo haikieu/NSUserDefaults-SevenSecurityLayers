@@ -61,7 +61,7 @@ NSString * yourString = [pref stringForKey:@"KindOfEncrytion"];
 
  * **Obfuscate your secret key**
 
-       ######  Shouldn't use this NSString * theSecretKey = @"putYourKeyHere"; 
+      Shouldn't use this ~~NSString * theSecretKey = @"putYourKeyHere";~~
 
        Right way :point_right: `NSString * theSecretKey = @"".p.u.t.Y.o.u.r.K.e.y.H.e.r.e;`
 
