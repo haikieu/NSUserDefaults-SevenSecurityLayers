@@ -18,7 +18,7 @@ Note: Remember to install dependency first
 
 -----------------------------------
 
-In the implementation file, import NSUserDefaults+SevenSecurityLayers.h
+In the implementation file, import `NSUserDefaults+SevenSecurityLayers.h`
 
 ```objective-c
 #import "NSUserDefaults+SevenSecurityLayers.h"
@@ -55,10 +55,10 @@ NSString * yourString = [pref stringForKey:@"KindOfEncrytion"];
 
 ### Supported Supported NOTIFICATION Events
 
- * NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA
- * NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA
-* ~~NOTIFICATION_SECRET_KEY_NOT_SET~~
-* ~~NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED~~
+ * `NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA`
+ * `NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA`
+* `~~NOTIFICATION_SECRET_KEY_NOT_SET~~`
+* `~~NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED~~`
 
 ### Supported Encryption Types
 
