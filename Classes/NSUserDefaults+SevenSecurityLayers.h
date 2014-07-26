@@ -34,7 +34,7 @@
 EX_NSSTRING * NOTIFICATION_SECRET_KEY_NOT_SET __attribute__((deprecated("not support this anymore!")));
 EX_NSSTRING * NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA;
 EX_NSSTRING * NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA;
-EX_NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED;
+EX_NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED __attribute__((deprecated("not support yet!")));
 //################################################################################################################
 typedef NS_ENUM(NSInteger, EncryptionAlgorithm)
 {
@@ -73,7 +73,7 @@ typedef NS_ENUM(NSInteger, iCloudMode)
 
 - (NSString *) cloud __attribute__((unavailable("not support yet!")));
 - (NSString *) nonSecured;
-- (BOOL) isCloud __attribute__((unavailable("not support this yet!")));
+- (BOOL) isCloud __attribute__((unavailable("not support yet!")));
 - (BOOL) isNonSecured;
 
 @end
