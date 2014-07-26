@@ -9,9 +9,6 @@
 #import "NSUserDefaults+SevenSecurityLayers.h"
 #import "CocoaSecurity.h"
 
-#define kStoredObjectKey @"storedObject"
-#define SUITE_NAME       @"com.hk.SevenSecurityLayers.userdefaults"
-
 #define NSSTRING const NSString
 
 NSSTRING * NOTIFICATION_SECRET_KEY_NOT_SET             = @"NOTIFICATION_SECRET_KEY_NOT_SET";
@@ -24,8 +21,52 @@ NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED  = @"NOTIFICATION_STORED_D
 //################################################################################################################
 @implementation NSSecuredUserDefaults
 {
-    __strong NSString *_secretKey;
-    enum EncryptionAlgorithm _encryption;
+    __strong NSString * _secretKey;
+    __strong NSString * _UUID;
+    
+    NSData *_secretData;
+    NSData *_deviceIdentifierData;
+    
+     EncryptionAlgorithm _encryption;
+}
+static NSString * kStoredObjectKey;
+static NSString * SUITE_NAME;
+static NSString * _userDefaultsValueKey;
+static NSString * _userDefaultsHashKey;
++(void)initialize
+{
+    kStoredObjectKey = @"".s.t.o.r.e.d.O.b.j.e.c.t;
+    SUITE_NAME = @"".c.o.m.dot.h.k.dot.S.e.v.e.n.S.e.c.u.r.i.t.y.L.a.y.e.r.s.dot.u.s.e.r.d.e.f.a.u.l.t.s;
+    
+    _userDefaultsValueKey = @"".D.e.f.a.u.l.t.s.V.a.l.u.e.K.e.y;
+    _userDefaultsHashKey = @"".D.e.f.a.u.l.t.s.H.a.s.h.K.e.y;
+}
+
+- (NSString *)_hashObject:(id)object
+{
+	if (_secretData == nil) {
+		// Use if statement in case asserts are disabled
+		NSAssert(NO, @"Provide a secret before using any secure writing or reading methods!");
+		return nil;
+	}
+    
+    // Copy object to make sure it is immutable (thanks Stephen)
+    object = [object copy];
+	
+	// Archive & hash
+	NSMutableData *archivedData = [[NSKeyedArchiver archivedDataWithRootObject:object] mutableCopy];
+	[archivedData appendData:_secretData];
+	if (_deviceIdentifierData != nil) {
+		[archivedData appendData:_deviceIdentifierData];
+	}
+	NSString *hash = [self _hashData:archivedData];
+	
+	return hash;
+}
+
+- (NSString *)_hashData:(NSData *)data
+{
+	return [CocoaSecurity md5WithData:data].base64;
 }
 
 #pragma mark - Implemement category
@@ -50,9 +91,29 @@ static id __securedObj = nil;
 #endif
         [self raiseEncryptionKeyException];
     }
+    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+#ifdef DEBUG
         _secretKey = [secretKey copy];
+#else
+        _secretKey = [CocoaSecurity md5:secretKey].hexLower;
+#endif
+        
+    });
+    
+    return self;
+}
+
+-(instancetype)setUUID:(NSString *)UUID
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+#ifdef DEBUG
+        _UUID = [UUID copy];
+#else
+        _UUID = [CocoaSecurity md5:UUID].hexLower;;
+#endif
     });
     
     return self;
