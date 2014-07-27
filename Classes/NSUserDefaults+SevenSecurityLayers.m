@@ -185,7 +185,7 @@ static id __securedObj = nil;
         CocoaSecurityResult *result = [CocoaSecurity aesEncryptWithData:data key:aesKey iv:aesIv];
         
         // Save data in user defaults
-        [super setObject:result.data forKey:defaultName];
+        [super setObject:@{_userDefaultsValueKey:result.data,_userDefaultsHashKey:[self _hashObject:value]} forKey:defaultName];
     }
     @catch (NSException *exception) {
         
@@ -213,7 +213,10 @@ static id __securedObj = nil;
     }
     
     // Fetch data from user defaults
-    NSData *data = [super objectForKey:defaultName];
+    NSDictionary *dic = [super objectForKey:defaultName];
+    NSData *data = [dic objectForKey:_userDefaultsValueKey];
+    id hash = [dic objectForKey:_userDefaultsHashKey];
+    id hashAgain = nil;
     
     // Check if we have some data to decrypt, return nil if no
     if(data == nil) {
@@ -235,7 +238,19 @@ static id __securedObj = nil;
         NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:result.data];
         id object = [unarchiver decodeObjectForKey:kStoredObjectKey];
         [unarchiver finishDecoding];
-        return object;
+        
+        hashAgain = [self _hashObject:object];
+        
+        if([hash isEqualToString:hashAgain])
+        {
+            return object;
+        }
+        else
+        {
+            NSDictionary *userInfo = @{USERINFO_MESSAGE:@"Original data was violated by ...",USERINFO_KEY:defaultName,USERINFO_VALUE:object};
+            [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED copy] object:self userInfo:userInfo];
+        }
+        return nil;
     }
     @catch (NSException *exception) {
         
@@ -268,7 +283,7 @@ static id __securedObj = nil;
         return obj;
     }
     
-    NSDictionary *userInfo = @{USERINFO_MESSAGE:@"Origin data was violated",USERINFO_KEY:defaultName,USERINFO_VALUE:obj};
+    NSDictionary *userInfo = @{USERINFO_MESSAGE:@"Original data was violated by ...",USERINFO_KEY:defaultName,USERINFO_VALUE:obj};
     
     [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED copy] object:self userInfo:userInfo];
     
