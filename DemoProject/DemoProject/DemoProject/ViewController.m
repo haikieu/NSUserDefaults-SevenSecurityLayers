@@ -65,7 +65,7 @@
 -(void) NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA:(NSNotification*) notification
 {
     NSDictionary *userInfo = notification.userInfo;
-    
+    NotificationSecurity notif = [userInfo notificationFromUserInfo];
     NSString *message = [userInfo messageFromUserInfo];
     NSString *key = [userInfo keyFromUserInfo];
     NSString *value = [userInfo valueFromUserInfo];
@@ -78,9 +78,8 @@
 -(void) NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA:(NSNotification*) notification
 {
     NSDictionary *userInfo = notification.userInfo;
-    
-    NSString *message =
-    [userInfo messageFromUserInfo];
+    NotificationSecurity notif = [userInfo notificationFromUserInfo];
+    NSString *message = [userInfo messageFromUserInfo];
     NSString *key = [userInfo keyFromUserInfo];
     NSString *value = [userInfo valueFromUserInfo];
     
@@ -92,7 +91,7 @@
 -(void) NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED:(NSNotification*) notification
 {
     NSDictionary *userInfo = notification.userInfo;
-    
+    NotificationSecurity notif = [userInfo notificationFromUserInfo];
     NSString *message = [userInfo messageFromUserInfo];
     NSString *key = [userInfo keyFromUserInfo];
     NSString *value = [userInfo valueFromUserInfo];
@@ -115,7 +114,7 @@
 }
 
 - (IBAction)onTapSetKey:(id)sender {
-    _pref = [[NSUserDefaults securedUserDefaults] setSecretKey:_txtSecretKey.text];
+    _pref = [[[NSUserDefaults securedUserDefaults] setSecretKey:_txtSecretKey.text] setUUID:UUID()];;
 }
 
 - (IBAction)onSaveData:(id)sender {
