@@ -16,6 +16,10 @@ NSSTRING * NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA = @"NOTIFICATION_CANNOT_R
 NSSTRING * NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA    = @"NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA";
 NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED  = @"NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED";
 
+#define USERINFO_MESSAGE @"message"
+#define USERINFO_KEY @"key"
+#define USERINFO_VALUE @"value"
+
 #if DEBUG
 
 #define TEST_RELEASE_MODE 1
@@ -247,6 +251,29 @@ static id __securedObj = nil;
     @finally {}
 }
 
+-(void)setNonSecuredObject:(id)value forKey:(NSString *)defaultName
+{
+    [super setObject:@{_userDefaultsValueKey: value,_userDefaultsHashKey:[self _hashObject:value]} forKey:defaultName];
+}
+
+-(id)nonSecuredObjectForKey:(NSString *)defaultName
+{
+    NSDictionary *dic = [super objectForKey:defaultName];
+    id obj = [dic objectForKey:_userDefaultsValueKey];
+    id hash = [dic objectForKey:_userDefaultsHashKey];
+    id hashAgain = [self _hashObject:obj];
+    
+    if([hash isEqualToString:hashAgain])
+    {
+        return obj;
+    }
+    
+    NSDictionary *userInfo = @{USERINFO_MESSAGE:@"Origin data was violated",USERINFO_KEY:defaultName,USERINFO_VALUE:obj};
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED copy] object:self userInfo:userInfo];
+    
+    return nil;
+}
 
 #pragma mark - Storage business
 
@@ -254,7 +281,7 @@ static id __securedObj = nil;
 {
     if(defaultName.isNonSecured)
     {
-        [super setObject:value forKey:defaultName];
+        [self setNonSecuredObject:value forKey:defaultName];
     }
     else
     {
@@ -266,7 +293,7 @@ static id __securedObj = nil;
 {
     if(defaultName.isNonSecured)
     {
-        return [super objectForKey:defaultName];
+        return [self nonSecuredObjectForKey:defaultName];
     }
     
     return [self securedObjectForKey:defaultName];

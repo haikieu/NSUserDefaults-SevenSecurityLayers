@@ -32,7 +32,7 @@
 EX_NSSTRING * NOTIFICATION_SECRET_KEY_NOT_SET __attribute__((deprecated("not support this anymore!")));
 EX_NSSTRING * NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA;
 EX_NSSTRING * NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA;
-EX_NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED __attribute__((deprecated("not support yet!")));
+EX_NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED;
 //################################################################################################################
 typedef NS_OPTIONS(NSInteger, EncryptionAlgorithm)
 {
