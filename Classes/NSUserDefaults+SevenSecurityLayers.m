@@ -26,15 +26,25 @@ NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED  = @"NOTIFICATION_STORED_D
 
 #endif
 //################################################################################################################
+NSString* UUID()
+{
+    NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    return uniqueIdentifier;
+}
+//################################################################################################################
+@interface CocoaSecurityResult(SevenSecurityLayers)
+-(NSString*)key;
+@end
+@implementation CocoaSecurityResult(SevenSecurityLayers)
+-(NSString *)key    {   return [self base64];   }
+@end
+//################################################################################################################
 @interface NSSecuredUserDefaults : NSUserDefaults @end
 //################################################################################################################
 @implementation NSSecuredUserDefaults
 {
-    __strong NSString * _secretKey;
-    __strong NSString * _UUID;
-    
-    __strong NSData *_secretData;
-    __strong NSData *_deviceIdentifierData;
+    __strong CocoaSecurityResult * _secretKey;
+    __strong CocoaSecurityResult * _UUID;
     
      EncryptionAlgorithm _encryption;
 }
@@ -53,7 +63,7 @@ static NSString * _userDefaultsHashKey;
 
 - (NSString *)_hashObject:(id)object
 {
-	if (_secretData == nil) {
+	if (_secretKey == nil) {
 		// Use if statement in case asserts are disabled
 		NSAssert(NO, @"Provide a secret before using any secure writing or reading methods!");
 		return nil;
@@ -64,9 +74,9 @@ static NSString * _userDefaultsHashKey;
 	
 	// Archive & hash
 	NSMutableData *archivedData = [[NSKeyedArchiver archivedDataWithRootObject:object] mutableCopy];
-	[archivedData appendData:_secretData];
-	if (_deviceIdentifierData != nil) {
-		[archivedData appendData:_deviceIdentifierData];
+	[archivedData appendData:_secretKey.data];
+	if (_UUID.data != nil) {
+		[archivedData appendData:_UUID.data];
 	}
 	NSString *hash = [self _hashData:archivedData];
 	
@@ -106,7 +116,7 @@ static id __securedObj = nil;
 #if DEBUG && !TEST_RELEASE_MODE
         _secretKey = [secretKey copy];
 #else
-        _secretKey = [CocoaSecurity md5:secretKey].hexLower;
+        _secretKey = [CocoaSecurity md5:secretKey];
 #endif
         
     });
@@ -121,7 +131,7 @@ static id __securedObj = nil;
 #if DEBUG && !TEST_RELEASE_MODE
         _UUID = [UUID copy];
 #else
-        _UUID = [CocoaSecurity md5:UUID].hexLower;;
+        _UUID = [CocoaSecurity md5:UUID];;
 #endif
     });
     
@@ -158,7 +168,7 @@ static id __securedObj = nil;
 -(void)setSecuredObject:(id)value forKey:(NSString *)defaultName
 {
     // Check if we have a (valid) key needed to encrypt
-    if(!_secretKey.length)
+    if(!_secretKey)
     {
 #ifdef DEBUG
         NSLog(@"NSSecuredUserDefaults >>> %@",@"Secret may not be nil when storing an object securely");
@@ -177,7 +187,7 @@ static id __securedObj = nil;
         [archiver finishEncoding];
         
         // Generate key and IV
-        CocoaSecurityResult *keyData = [CocoaSecurity sha384:_secretKey];
+        CocoaSecurityResult *keyData = [CocoaSecurity sha384:_secretKey.key];
         NSData *aesKey = [keyData.data subdataWithRange:NSMakeRange(0, 32)];
         NSData *aesIv = [keyData.data subdataWithRange:NSMakeRange(32, 16)];
         
@@ -202,7 +212,7 @@ static id __securedObj = nil;
 -(id)securedObjectForKey:(NSString *)defaultName
 {
     // Check if we have a (valid) key needed to decrypt
-    if(!_secretKey.length)
+    if(!_secretKey)
     {
 #ifdef DEBUG
         NSLog(@"NSSecuredUserDefaults >>> %@",@"Secret may not be nil or blank when storing an object securely");
@@ -227,7 +237,7 @@ static id __securedObj = nil;
     @try {
         
         // Generate key and IV
-        CocoaSecurityResult *keyData = [CocoaSecurity sha384:_secretKey];
+        CocoaSecurityResult *keyData = [CocoaSecurity sha384:_secretKey.key];
         NSData *aesKey = [keyData.data subdataWithRange:NSMakeRange(0, 32)];
         NSData *aesIv = [keyData.data subdataWithRange:NSMakeRange(32, 16)];
         

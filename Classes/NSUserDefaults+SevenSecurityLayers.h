@@ -48,6 +48,8 @@ typedef NS_OPTIONS(NSInteger, iCloudMode)
     iCloudAll     = 1 <<1
 };
 //################################################################################################################
+NSString* UUID();
+
 @interface NSUserDefaults (SevenSecurityLayers)
 
 +(void) migrate:(NSUserDefaults*) source to:(NSUserDefaults*) destination clearSource:(BOOL)clear;
