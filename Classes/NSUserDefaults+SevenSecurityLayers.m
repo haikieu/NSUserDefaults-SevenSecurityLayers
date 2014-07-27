@@ -16,6 +16,7 @@ NSSTRING * NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA = @"NOTIFICATION_CANNOT_R
 NSSTRING * NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA    = @"NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA";
 NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED  = @"NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED";
 
+#define USERINFO_NOTIFICATION @"notification"
 #define USERINFO_MESSAGE @"message"
 #define USERINFO_KEY @"key"
 #define USERINFO_VALUE @"value"
@@ -204,7 +205,7 @@ static id __securedObj = nil;
         NSLog(@"Cannot store object securely: %@",exception.reason);
 #endif
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA copy] object:self userInfo:@{@"message": [NSString stringWithFormat:@"Cannot store object securely: %@",exception.reason],@"key":defaultName,@"value":value}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA copy] object:self userInfo:@{USERINFO_NOTIFICATION:[NSNumber numberWithInteger:NotificationCannotStoreData],@"message": [NSString stringWithFormat:@"Cannot store object securely: %@",exception.reason],@"key":defaultName,@"value":value}];
     }
     @finally {}
 }
@@ -257,7 +258,7 @@ static id __securedObj = nil;
         }
         else
         {
-            NSDictionary *userInfo = @{USERINFO_MESSAGE:@"Original data was violated by ...",USERINFO_KEY:defaultName,USERINFO_VALUE:object};
+            NSDictionary *userInfo = @{USERINFO_NOTIFICATION:[NSNumber numberWithInteger:NotificationDataIsViolated],USERINFO_MESSAGE:@"Original data was violated by ...",USERINFO_KEY:defaultName,USERINFO_VALUE:object};
             [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED copy] object:self userInfo:userInfo];
         }
         return nil;
@@ -268,7 +269,7 @@ static id __securedObj = nil;
         // Whoops!
         NSLog(@"Cannot receive object from encrypted data storage: %@",exception.reason);
 #endif
-        [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA copy] object:self userInfo:@{@"message": [NSString stringWithFormat:@"Cannot receive object from encrypted data storage: %@",exception.reason],@"key":defaultName,@"value":@""}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA copy] object:self userInfo:@{USERINFO_NOTIFICATION:[NSNumber numberWithInteger:NotificationCannotRetrieveData],@"message": [NSString stringWithFormat:@"Cannot receive object from encrypted data storage: %@",exception.reason],@"key":defaultName,@"value":@""}];
         
         return nil;
     }
@@ -293,7 +294,7 @@ static id __securedObj = nil;
         return obj;
     }
     
-    NSDictionary *userInfo = @{USERINFO_MESSAGE:@"Original data was violated by ...",USERINFO_KEY:defaultName,USERINFO_VALUE:obj};
+    NSDictionary *userInfo = @{USERINFO_NOTIFICATION:[NSNumber numberWithInteger:NotificationDataIsViolated],USERINFO_MESSAGE:@"Original data was violated by ...",USERINFO_KEY:defaultName,USERINFO_VALUE:obj};
     
     [[NSNotificationCenter defaultCenter] postNotificationName:[NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED copy] object:self userInfo:userInfo];
     
@@ -526,9 +527,10 @@ static id __securedObj = nil;
 //################################################################################################################
 @implementation NSDictionary (SevenSecurityLayers)
 
--(NSString *)messageFromUserInfo    {   return [[self objectForKey:@"message"] description];    }
--(NSString *)keyFromUserInfo        {   return [[self objectForKey:@"key"] description];        }
--(id)valueFromUserInfo              {   return [self objectForKey:@"value"];                    }
+-(NotificationSecurity)notificationFromUserInfo { return (NotificationSecurity) [[self objectForKey:USERINFO_NOTIFICATION] description].integerValue; }
+-(NSString *)messageFromUserInfo    {   return [[self objectForKey:USERINFO_MESSAGE] description];    }
+-(NSString *)keyFromUserInfo        {   return [[self objectForKey:USERINFO_KEY] description];        }
+-(id)valueFromUserInfo              {   return [self objectForKey:USERINFO_VALUE];                    }
 
 @end
 //################################################################################################################

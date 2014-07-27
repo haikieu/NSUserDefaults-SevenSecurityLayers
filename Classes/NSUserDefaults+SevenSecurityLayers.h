@@ -15,10 +15,11 @@
 3) Obfuscate secret key, hide secret key in binary code (available)
 3) Hash key, protect secret key in runtime (available)
 4) Mutli encryption (On-going)
-5) Detect data hijack
-6) Bind UserDefault to device hardware
+5) Detect data hijack (done)
+6) Bind UserDefault to device hardware (done))
 7) Frozen data preference file
- 
+
+* support multi notification handling model (done)
 * Support non-secured storage (done)
 * Support iCloud backup (on-going)
 * Support migrate (done)
@@ -33,6 +34,15 @@ EX_NSSTRING * NOTIFICATION_SECRET_KEY_NOT_SET __attribute__((deprecated("not sup
 EX_NSSTRING * NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA;
 EX_NSSTRING * NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA;
 EX_NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED;
+
+typedef NS_ENUM(NSInteger, NotificationSecurity)
+{
+    NotificationSecretKeyNotSet    = 1,
+    NotificationCannotRetrieveData = 2,
+    NotificationCannotStoreData    = 3,
+    NotificationDataIsViolated     = 4
+};
+
 //################################################################################################################
 typedef NS_OPTIONS(NSInteger, EncryptionAlgorithm)
 {
@@ -65,6 +75,7 @@ NSString* UUID();
 //################################################################################################################
 @interface NSDictionary (SevenSecurityLayers)
 
+-(NotificationSecurity) notificationFromUserInfo;
 -(NSString*) messageFromUserInfo;
 -(NSString*) keyFromUserInfo;
 -(id) valueFromUserInfo;
