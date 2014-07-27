@@ -34,7 +34,7 @@ EX_NSSTRING * NOTIFICATION_CANNOT_RETRIEVE_ENCRYPTED_DATA;
 EX_NSSTRING * NOTIFICATION_CANNOT_STORE_ENCRYPTED_DATA;
 EX_NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED __attribute__((deprecated("not support yet!")));
 //################################################################################################################
-typedef NS_ENUM(NSInteger, EncryptionAlgorithm)
+typedef NS_OPTIONS(NSInteger, EncryptionAlgorithm)
 {
     EncryptionDefault = 1 << 0,
     EncryptionSHA     = 1 << 1,
@@ -42,7 +42,7 @@ typedef NS_ENUM(NSInteger, EncryptionAlgorithm)
     EncryptionAES     = 1 << 3
 };
 
-typedef NS_ENUM(NSInteger, iCloudMode)
+typedef NS_OPTIONS(NSInteger, iCloudMode)
 {
     iCloudDefault = 1 <<0,
     iCloudAll     = 1 <<1
