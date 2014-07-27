@@ -18,7 +18,7 @@ NSSTRING * NOTIFICATION_STORED_DATA_HAS_BEEN_VIOLATED  = @"NOTIFICATION_STORED_D
 
 #if DEBUG
 
-#define TEST_RELEASE_MODE 0
+#define TEST_RELEASE_MODE 1
 
 #endif
 //################################################################################################################
@@ -99,7 +99,7 @@ static id __securedObj = nil;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-#ifdef DEBUG
+#if DEBUG && !TEST_RELEASE_MODE
         _secretKey = [secretKey copy];
 #else
         _secretKey = [CocoaSecurity md5:secretKey].hexLower;
@@ -114,7 +114,7 @@ static id __securedObj = nil;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-#ifdef DEBUG
+#if DEBUG && !TEST_RELEASE_MODE
         _UUID = [UUID copy];
 #else
         _UUID = [CocoaSecurity md5:UUID].hexLower;;
@@ -451,6 +451,7 @@ static id __securedObj = nil;
 -(instancetype)setSecretKey:(NSString *)secretKey                           {   return nil; }
 -(instancetype)setEncryption:(enum EncryptionAlgorithm)encryptionAlgorithm  {   return nil; }
 -(instancetype)setiCloud:(enum iCloudMode)iCloudMode                        {   return nil; }
+-(instancetype)setUUID:(NSString *)UUID                                     {   return nil; }
 
 +(void)migrate:(NSUserDefaults *)source to:(NSUserDefaults *)destination clearSource:(BOOL)clear
 {
