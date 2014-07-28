@@ -33,10 +33,12 @@ Initialize a secured UserDefaults with a secret key.
 
 NSUserDefault *pref = [[NSUserDefault securedUserDefaults] setSecretKey:@"Your secret key"];
 
+// >>> DONE! That's it, a secured storage has been created already for you to save any data later. <<<
+
 ```
 ```objective-c
 
-//Save data
+//Demonstrate saving data
 
 [pref setBool:YES forKey:@"DataIsSecured"];
 [pref setString:@"AES 356-bit" forKey:@"KindOfEncryption"];
@@ -48,7 +50,7 @@ NSUserDefault *pref = [[NSUserDefault securedUserDefaults] setSecretKey:@"Your s
 ```
 ```objective-c
 
-//Retrieve data
+//Demonstrate retrieving data
 
 bool yourBool = [pref boolForKey:@"DataIsSecured"];
 NSString * yourString = [pref stringForKey:@"KindOfEncrytion"];
