@@ -40,7 +40,12 @@ NSString* UUID()
 -(NSString *)key    {   return [self base64];   }
 @end
 //################################################################################################################
-@interface NSSecuredUserDefaults : NSUserDefaults @end
+@interface NSSecuredUserDefaults : NSUserDefaults
+
+@property(copy)EncryptionAlgorimth encryptBlock;
+@property(copy)DecryptionAlgorimth decryptBlock;
+
+@end
 //################################################################################################################
 @implementation NSSecuredUserDefaults
 {
@@ -90,6 +95,12 @@ static NSString * _userDefaultsHashKey;
 }
 
 #pragma mark - Implemement category
+-(instancetype)setEncryption:(EncryptionAlgorimth)encryptBlock decryption:(DecryptionAlgorimth)decryptBlock
+{
+    _encryptBlock = encryptBlock;
+    _decryptBlock = decryptBlock;
+    return self;
+}
 
 static id __securedObj = nil;
 +(instancetype)securedUserDefaults
@@ -500,6 +511,7 @@ static id __securedObj = nil;
     [NSSecuredUserDefaults resetSecuredUserDefaults];
 }
 
+-(instancetype)setEncryption:(EncryptionAlgorimth)encryptBlock decryption:(DecryptionAlgorimth)decryptBlock { return nil;   }
 -(instancetype)setSecretKey:(NSString *)secretKey                           {   return nil; }
 -(instancetype)setCombination:(CombineEncryption)combination                {   return nil; }
 -(instancetype)setiCloud:(enum iCloudMode)iCloudMode                        {   return nil; }

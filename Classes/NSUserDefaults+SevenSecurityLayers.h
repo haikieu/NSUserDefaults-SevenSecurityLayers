@@ -57,6 +57,9 @@ typedef NS_OPTIONS(NSInteger, iCloudMode)
     iCloudDefault = 1 <<0,
     iCloudAll     = 1 <<1
 };
+@class CocoaSecurityResult;
+typedef id (^ EncryptionAlgorimth)(NSString *key, NSObject *value, CocoaSecurityResult *secretKey, CocoaSecurityResult * UUID);
+typedef id (^ DecryptionAlgorimth)(NSString *key, NSData *data, CocoaSecurityResult * secretKey, CocoaSecurityResult * UUID);
 //################################################################################################################
 NSString* UUID();
 
@@ -70,6 +73,7 @@ NSString* UUID();
 -(instancetype) setUUID:(NSString *)UUID;
 -(instancetype) setCombination:(CombineEncryption) combination;
 -(instancetype) setiCloud:(iCloudMode) iCloudMode;
+-(instancetype) setEncryption:(EncryptionAlgorimth)encryptBlock decryption:(DecryptionAlgorimth) decryptBlock;
 
 @end
 //################################################################################################################
