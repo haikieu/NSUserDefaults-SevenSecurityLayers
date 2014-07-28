@@ -47,7 +47,7 @@ NSString* UUID()
     __strong CocoaSecurityResult * _secretKey;
     __strong CocoaSecurityResult * _UUID;
     
-     EncryptionAlgorithm _encryption;
+     CombineEncryption _combination;
 }
 static NSString * kStoredObjectKey;
 static NSString * SUITE_NAME;
@@ -96,7 +96,7 @@ static id __securedObj = nil;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        __securedObj = [[[NSSecuredUserDefaults alloc] initWithSuiteName:SUITE_NAME] setEncryption:EncryptionDefault];
+        __securedObj = [[[NSSecuredUserDefaults alloc] initWithSuiteName:SUITE_NAME] setCombination:CombineDefault];
     });
     return __securedObj;
 }
@@ -139,11 +139,10 @@ static id __securedObj = nil;
     return self;
 }
 
--(instancetype)setEncryption:(enum EncryptionAlgorithm)encryptionAlgorithm
-{
+-(instancetype)setCombination:(CombineEncryption)combination{
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _encryption = encryptionAlgorithm;
+        _combination = combination;
     });
     
     return self;
@@ -502,7 +501,7 @@ static id __securedObj = nil;
 }
 
 -(instancetype)setSecretKey:(NSString *)secretKey                           {   return nil; }
--(instancetype)setEncryption:(enum EncryptionAlgorithm)encryptionAlgorithm  {   return nil; }
+-(instancetype)setCombination:(CombineEncryption)combination                {   return nil; }
 -(instancetype)setiCloud:(enum iCloudMode)iCloudMode                        {   return nil; }
 -(instancetype)setUUID:(NSString *)UUID                                     {   return nil; }
 

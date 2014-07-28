@@ -44,12 +44,12 @@ typedef NS_ENUM(NSInteger, NotificationSecurity)
 };
 
 //################################################################################################################
-typedef NS_OPTIONS(NSInteger, EncryptionAlgorithm)
+typedef NS_OPTIONS(NSInteger, CombineEncryption)
 {
-    EncryptionDefault = 1 << 0,
-    EncryptionSHA     = 1 << 1,
-    EncryptionMD5     = 1 << 2,
-    EncryptionAES     = 1 << 3
+    CombineDefault = 1 << 0,
+    CombineSHA     = 1 << 1,
+    CombineMD5     = 1 << 2,
+    CombineAES     = 1 << 3
 };
 
 typedef NS_OPTIONS(NSInteger, iCloudMode)
@@ -68,7 +68,7 @@ NSString* UUID();
 +(void) resetSecuredUserDefaults;
 -(instancetype) setSecretKey:(NSString*) secretKey;
 -(instancetype) setUUID:(NSString *)UUID;
--(instancetype) setEncryption:(EncryptionAlgorithm) encryptionAlgorithm;
+-(instancetype) setCombination:(CombineEncryption) combination;
 -(instancetype) setiCloud:(iCloudMode) iCloudMode;
 
 @end
