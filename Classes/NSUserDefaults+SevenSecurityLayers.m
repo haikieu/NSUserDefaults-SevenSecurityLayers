@@ -8,6 +8,7 @@
 
 #import "NSUserDefaults+SevenSecurityLayers.h"
 #import "CocoaSecurity.h"
+#import "DKPassword.h"
 
 #define NSSTRING const NSString
 
