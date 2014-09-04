@@ -12,3 +12,9 @@
 #define COCOAPODS_VERSION_MINOR_CocoaSecurity 2
 #define COCOAPODS_VERSION_PATCH_CocoaSecurity 4
 
+// DKPassword
+#define COCOAPODS_POD_AVAILABLE_DKPassword
+#define COCOAPODS_VERSION_MAJOR_DKPassword 0
+#define COCOAPODS_VERSION_MINOR_DKPassword 0
+#define COCOAPODS_VERSION_PATCH_DKPassword 1
+

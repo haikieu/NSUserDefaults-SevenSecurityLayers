@@ -1,10 +1,13 @@
 PODS:
   - CocoaSecurity (1.2.4)
+  - DKPassword (0.0.1)
 
 DEPENDENCIES:
-  - CocoaSecurity
+  - CocoaSecurity (~> 1.2)
+  - DKPassword (~> 0.0)
 
 SPEC CHECKSUMS:
   CocoaSecurity: 7ce1b967863d4e96dcffdbad17671117900e6c6e
+  DKPassword: eca2d99d86e32e36c798567d26d698923f2302bf
 
 COCOAPODS: 0.33.1

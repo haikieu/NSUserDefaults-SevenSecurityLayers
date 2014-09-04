@@ -5,24 +5,20 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>3F7107CF-4300-4601-A416-E559E5C01FC1</string>
+	<string>FB7B8532-C12A-4A65-9843-4093E995C29D</string>
 	<key>IDESourceControlProjectName</key>
 	<string>DemoProject</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>EF91EADC-9742-4FDA-ABFB-62F380C172AD</key>
-		<string>https://github.com/haikieu/NSUserDefaults-SevenSecurityLayers.git</string>
 		<key>ada48c84-0a37-22d5-f751-ce57b7db7bff</key>
 		<string>https://github.com/haikieu/NSUserDefaults-SecuredUserDefaults.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>trunk/DemoProject/DemoProject/DemoProject.xcworkspace</string>
+	<string>trunk/DemoProject/DemoProject/DemoProject.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>EF91EADC-9742-4FDA-ABFB-62F380C172AD</key>
-		<string>../../../../../NSUserDefaults-SevenSecurityLayers.git</string>
 		<key>ada48c84-0a37-22d5-f751-ce57b7db7bff</key>
-		<string>../../../..</string>
+		<string>../../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
@@ -37,20 +33,6 @@
 			<string>ada48c84-0a37-22d5-f751-ce57b7db7bff</string>
 			<key>IDESourceControlWCCName</key>
 			<string>NSUserDefaults-SecuredUserDefaults.git</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryBranchesRelativeLocationKey</key>
-			<string>branches</string>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.subversion</string>
-			<key>IDESourceControlRepositoryTagsRelativeLocationKey</key>
-			<string>tags</string>
-			<key>IDESourceControlRepositoryTrunkRelativeLocationKey</key>
-			<string>trunk</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>EF91EADC-9742-4FDA-ABFB-62F380C172AD</string>
-			<key>IDESourceControlWCCName</key>
-			<string>NSUserDefaults-SevenSecurityLayers.git</string>
 		</dict>
 	</array>
 </dict>

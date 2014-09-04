@@ -3,7 +3,8 @@
 
 target "DemoProject" do
 
-pod 'CocoaSecurity'
+pod 'CocoaSecurity', '~> 1.2'
+pod 'DKPassword', '~> 0.0'
 
 end
 
