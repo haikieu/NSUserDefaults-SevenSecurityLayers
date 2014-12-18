@@ -12,6 +12,8 @@ NSUserDefaults+SevenSecurityLayers.h
 ###### * Enable to handle exceptional case via built-in NOTIFICATION
 ###### * Enable using standardUserDefaults as well as securedUserDefaults parallelly
 
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SLWW2XYDATUYS" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" alt="Make donation for Hai Kieu's github"/></a>
+
 -------------------------------------
 
 ## How to use
@@ -105,6 +107,8 @@ Seven Security Layers Solution supports the following property types:
 ### Contact
 
 Email: haikieu2907@gmail.com
+
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SLWW2XYDATUYS" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" alt="Make donation for Hai Kieu's github"/></a>
 
 ###Thanks to 
 
