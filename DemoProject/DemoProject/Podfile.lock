@@ -1,13 +1,19 @@
 PODS:
   - CocoaSecurity (1.2.4)
+  - crackify (0.0.2)
   - DKPassword (0.0.1)
+  - UAObfuscatedString (0.3.1)
 
 DEPENDENCIES:
   - CocoaSecurity (~> 1.2)
+  - crackify (~> 0.0)
   - DKPassword (~> 0.0)
+  - UAObfuscatedString (= 0.3.1)
 
 SPEC CHECKSUMS:
-  CocoaSecurity: 7ce1b967863d4e96dcffdbad17671117900e6c6e
-  DKPassword: eca2d99d86e32e36c798567d26d698923f2302bf
+  CocoaSecurity: d288a6f87e0f363823d2cb83e753814a6944f71a
+  crackify: bd7b65c5cddcb7c91d596d33d356e93d52cde423
+  DKPassword: c89f590c920c2af351d4bdc3d3df3db2eb142444
+  UAObfuscatedString: 292d08bb5423474b92238a40ea40269ee4e8d4b3
 
 COCOAPODS: 0.33.1

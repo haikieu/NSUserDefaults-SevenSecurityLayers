@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C2C25EF51B554141B48312EA"
+               BlueprintIdentifier = "B6BCA3DFCDCD48419147D22D"
                BuildableName = "libPods-DemoProject-CocoaSecurity.a"
                BlueprintName = "Pods-DemoProject-CocoaSecurity"
                ReferencedContainer = "container:Pods.xcodeproj">

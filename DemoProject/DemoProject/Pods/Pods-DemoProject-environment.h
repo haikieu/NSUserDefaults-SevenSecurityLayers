@@ -18,3 +18,15 @@
 #define COCOAPODS_VERSION_MINOR_DKPassword 0
 #define COCOAPODS_VERSION_PATCH_DKPassword 1
 
+// UAObfuscatedString
+#define COCOAPODS_POD_AVAILABLE_UAObfuscatedString
+#define COCOAPODS_VERSION_MAJOR_UAObfuscatedString 0
+#define COCOAPODS_VERSION_MINOR_UAObfuscatedString 3
+#define COCOAPODS_VERSION_PATCH_UAObfuscatedString 1
+
+// crackify
+#define COCOAPODS_POD_AVAILABLE_crackify
+#define COCOAPODS_VERSION_MAJOR_crackify 0
+#define COCOAPODS_VERSION_MINOR_crackify 0
+#define COCOAPODS_VERSION_PATCH_crackify 2
+

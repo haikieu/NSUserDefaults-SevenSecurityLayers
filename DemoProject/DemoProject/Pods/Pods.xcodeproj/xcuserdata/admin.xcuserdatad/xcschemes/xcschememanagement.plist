@@ -14,6 +14,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-DemoProject-UAObfuscatedString.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-DemoProject-crackify.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-DemoProject.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>035EF80657314A158803CE36</key>
+		<key>01AA21E228B944038ACFF175</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C2C25EF51B554141B48312EA</key>
+		<key>48366C74D4AD45C0A8A339ED</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D934AE7B13D54809982E1783</key>
+		<key>4F11332D120C4BF0B68868BD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B6BCA3DFCDCD48419147D22D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CFA827F907FB4D71BAAC40C4</key>
 		<dict>
 			<key>primary</key>
 			<true/>

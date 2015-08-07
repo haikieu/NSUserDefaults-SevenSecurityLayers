@@ -5,6 +5,8 @@ target "DemoProject" do
 
 pod 'CocoaSecurity', '~> 1.2'
 pod 'DKPassword', '~> 0.0'
+pod 'UAObfuscatedString', '0.3.1'
+pod 'crackify', '~> 0.0'
 
 end
 
