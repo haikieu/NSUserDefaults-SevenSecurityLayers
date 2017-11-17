@@ -1,4 +1,4 @@
-NSUserDefaults+SevenSecurityLayers.h 
+NSUserDefaults+SevenSecurityLayers.h (Obsoleted, this is no longer maintained)
 =====================
 
 * A category which provides an encryption layer for NSUserDefaults to securely save data . 
