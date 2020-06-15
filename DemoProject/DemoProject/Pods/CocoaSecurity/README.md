@@ -1,4 +1,4 @@
-#CocoaSecurity [![Build Status](https://secure.travis-ci.org/kelp404/CocoaSecurity.png?branch=master)](http://travis-ci.org/#!/kelp404/CocoaSecurity)
+# CocoaSecurity [![Build Status](https://secure.travis-ci.org/kelp404/CocoaSecurity.png?branch=master)](http://travis-ci.org/#!/kelp404/CocoaSecurity)
 
 Kelp https://twitter.com/kelp404/  
 [MIT License][mit]  
@@ -7,7 +7,7 @@ Kelp https://twitter.com/kelp404/
 
 CocoaSecurity include 4 classes, `CocoaSecurity`, `CocoaSecurityResult`, `CocoaSecurityEncoder` and `CocoaSecurityDecoder`.
 
-##CocoaSecurity
+## CocoaSecurity
 CocoaSecurity is core. It provides AES encrypt, AES decrypt, Hash(MD5, HmacMD5, SHA1~SHA512, HmacSHA1~HmacSHA512) messages.  
   
 **MD5:**
@@ -47,7 +47,7 @@ CocoaSecurityResult *aes256Decrypt = [CocoaSecurity aesDecryptWithBase64:@"WQYg5
 ```
 
 
-##CocoaSecurityResult
+## CocoaSecurityResult
 CocoaSecurityResult is the result class of CocoaSecurity. It provides convert result data to NSData, NSString, HEX string, Base64 string.
 
 ```objective-c
@@ -59,7 +59,7 @@ CocoaSecurityResult is the result class of CocoaSecurity. It provides convert re
 ```
 
 
-##CocoaSecurityEncoder
+## CocoaSecurityEncoder
 CocoaSecurityEncoder provides convert NSData to HEX string, Base64 string.
 
 ```objective-c
@@ -75,7 +75,7 @@ NSString *str2 = [encoder base64:[@"kelp" dataUsingEncoding:NSUTF8StringEncoding
 // str2 = 'a2VscA=='
 ```
 
-##CocoaSecurityDecoder
+## CocoaSecurityDecoder
 CocoaSecurityEncoder provides convert HEX string or Base64 string to NSData.
 
 ```objective-c
@@ -92,7 +92,7 @@ NSData *data2 = [decoder base64:@"zT1PS64MnXIUDCUiy13RRg=="];
 ```
 
 
-##Installation
+## Installation
 1. **git:**
 ```
 $ git clone git://github.com/kelp404/CocoaSecurity.git

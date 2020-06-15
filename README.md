@@ -5,7 +5,7 @@ NSUserDefaults+SevenSecurityLayers.h (Obsoleted, this is no longer maintained)
 * Using strong AES 356-bit encryption
 
 -------------------------------------
-####Benefit: 
+#### Benefit: 
 ##### * Secure user data just by one line of code.
 ##### * Support obfuscating your key in binary source
 ##### * Able to save data without encryption
@@ -59,7 +59,7 @@ NSString * yourString = [pref stringForKey:@"KindOfEncrytion"];
 ...
 
 ```
-###Advanced usage
+### Advanced usage
 
 * **v1.2.0** available
 
@@ -110,18 +110,18 @@ Email: haikieu2907@gmail.com
 
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SLWW2XYDATUYS" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" alt="Make donation for Hai Kieu's github"/></a>
 
-###Thanks to 
+### Thanks to 
 
  * https://github.com/nielsmouthaan/SecureNSUserDefaults
  * https://github.com/UrbanApps/UAObfuscatedString
 
 ### MIT License
 
-###Dependencies
+### Dependencies
 
  * CocoaSecurity 1.2.4 (https://github.com/kelp404/CocoaSecurity)
 
-###Dependencies Installation
+### Dependencies Installation
 1. **git:**
 ```
 $ git clone git://github.com/kelp404/CocoaSecurity.git
